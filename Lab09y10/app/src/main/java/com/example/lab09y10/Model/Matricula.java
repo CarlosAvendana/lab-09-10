@@ -1,39 +1,41 @@
 package com.example.lab09y10.Model;
 
-public class Matricula {
+import java.io.Serializable;
 
-    int idEstudiante;
-    int idCurso;
+public class Matricula implements Serializable {
+
+    String idEstudiante;
+    String idCurso;
 
     public Matricula() {
     }
 
-    public Matricula(int idEstudiante, int idCurso) {
+    public Matricula(String idEstudiante, String idCurso) {
         this.idEstudiante = idEstudiante;
         this.idCurso = idCurso;
     }
 
-    public int getIdEstudiante() {
+    public String getIdEstudiante() {
         return idEstudiante;
     }
 
-    public void setIdEstudiante(int idEstudiante) {
+    public void setIdEstudiante(String idEstudiante) {
         this.idEstudiante = idEstudiante;
     }
 
-    public int getIdCurso() {
+    public String getIdCurso() {
         return idCurso;
     }
 
-    public void setIdCurso(int idCurso) {
+    public void setIdCurso(String idCurso) {
         this.idCurso = idCurso;
     }
 
     @Override
     public String toString() {
         return "Matricula{" +
-                "idEstudiante=" + idEstudiante +
-                ", idCurso=" + idCurso +
+                "idEstudiante='" + idEstudiante + '\'' +
+                ", idCurso='" + idCurso + '\'' +
                 '}';
     }
 }

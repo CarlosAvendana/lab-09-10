@@ -1,25 +1,27 @@
 package com.example.lab09y10.Model;
 
-public class Curso {
+import java.io.Serializable;
 
-    int id;
+public class Curso implements Serializable {
+
+    String id;
     String descripcion;
     int creditos;
 
     public Curso() {
     }
 
-    public Curso(int id, String descripcion, int creditos) {
+    public Curso(String id, String descripcion, int creditos) {
         this.id = id;
         this.descripcion = descripcion;
         this.creditos = creditos;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -42,7 +44,7 @@ public class Curso {
     @Override
     public String toString() {
         return "Curso{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", descripcion='" + descripcion + '\'' +
                 ", creditos=" + creditos +
                 '}';

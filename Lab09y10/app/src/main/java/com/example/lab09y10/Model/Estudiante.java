@@ -1,8 +1,10 @@
 package com.example.lab09y10.Model;
 
-public class Estudiante {
+import java.io.Serializable;
 
-    int _id;
+public class Estudiante implements Serializable {
+
+    String _id;
     String _nombre;
     String _apellido;
     int _anios;
@@ -10,18 +12,18 @@ public class Estudiante {
     public Estudiante() {
     }
 
-    public Estudiante(int _id, String _nombre, String _apellido, int _anios) {
+    public Estudiante(String _id, String _nombre, String _apellido, int _anios) {
         this._id = _id;
         this._nombre = _nombre;
         this._apellido = _apellido;
         this._anios = _anios;
     }
 
-    public int get_id() {
+    public String get_id() {
         return _id;
     }
 
-    public void set_id(int _id) {
+    public void set_id(String _id) {
         this._id = _id;
     }
 
@@ -52,7 +54,7 @@ public class Estudiante {
     @Override
     public String toString() {
         return "Estudiante{" +
-                "_id=" + _id +
+                "_id='" + _id + '\'' +
                 ", _nombre='" + _nombre + '\'' +
                 ", _apellido='" + _apellido + '\'' +
                 ", _anios=" + _anios +
