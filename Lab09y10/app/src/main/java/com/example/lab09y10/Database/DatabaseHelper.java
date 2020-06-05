@@ -1,10 +1,14 @@
 package com.example.lab09y10.Database;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
+
+import com.example.lab09y10.Model.Curso;
+import com.example.lab09y10.Model.Estudiante;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -48,6 +52,39 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
+    }
+
+    public boolean addCurso(Curso c){
+        SQLiteDatabase db=this.getWritableDatabase();
+        ContentValues cv =new ContentValues();
+
+        cv.put(CURSO_ID,c.getId());
+        cv.put(CURSO_DESCRIPCION,c.getDescripcion());
+        cv.put(CURSO_CREDITOS,c.getCreditos());
+
+        long insert = db.insert(CURSO_TABLE, null, cv);
+        if(insert==-1){
+            return false;
+        }
+        else {
+            return true;
+        }
+
+    }
+
+    public boolean addEstudiante(Estudiante est){
+        SQLiteDatabase db=this.getWritableDatabase();
+        ContentValues cv =new ContentValues();
+
+        cv.put(ESTUDIANTE_ID, est.get_id());
+        cv.put(ESTUDIANTE_NOMBRE,est.get_nombre());
+        cv.put(ESTUDIANTE_APELLIDO,est.get_apellido());
+
+        return true;
+    }
+
+    public boolean addMatricula(String idE, String idC){
+        return true;
     }
 
 }
