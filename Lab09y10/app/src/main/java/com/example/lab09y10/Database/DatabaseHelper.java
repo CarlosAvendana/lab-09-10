@@ -36,7 +36,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String CURSO_CREDITOS = "CURSO_CREDITOS";
 
     public DatabaseHelper(@Nullable Context context) {
-        super(context, "errollment.db", null, 1);
+        super(context, "Lab9y10.db", null, 1);
     }
 
     //this is called the first time, create the tables
@@ -272,5 +272,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return returnList;
     }
+
+    //------CRUD USUARIOS
+
+    
 
 }
