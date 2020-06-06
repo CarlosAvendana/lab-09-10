@@ -1,20 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_home"
             android:title="@string/menu_home" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
+            android:id="@+id/nav_cursos_CRUD"
+            android:icon="@drawable/ic_curso_nav"
+            android:title="Cursos" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
+            android:id="@+id/nav_estudiante_CRUD"
+            android:icon="@drawable/ic_estudiantes"
+            android:title="Estudiantes" />
+        <item
+            android:id="@+id/nav_matricular"
+            android:icon="@drawable/ic_matricular"
+            android:title="Matricular" />
+        <item
+            android:id="@+id/nav_desmatricular"
+            android:icon="@drawable/ic_desmatricular"
+            android:title="Desmatricular" />
+        <item
+            android:id="@+id/nav_salir"
+            android:icon="@drawable/ic_power_off"
+            android:title="Log-Out" />
     </group>
 </menu>
