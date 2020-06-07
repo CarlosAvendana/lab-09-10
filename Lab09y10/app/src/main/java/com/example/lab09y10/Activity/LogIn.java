@@ -23,16 +23,46 @@ public class LogIn extends AppCompatActivity {
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {/*
-                if (validarUser(UserName.getText().toString(), Password.getText().toString())) {
-                    sendToNavigationDrawer(UserName.getText().toString(), Password.getText().toString());
-                    finish();
-                } else {
-                    Toast.makeText(getApplicationContext(), "DATOS INCORRECTOS", Toast.LENGTH_LONG).show();
-                }*/
+            public void onClick(View v) {
+                sentNavigationDrawer();
             }
         });
     }//Cierre on Create
+
+    private void sentNavigationDrawer() {
+        startActivity(new Intent(LogIn.this, NavDrawer.class));
+        this.finish();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
     private boolean validarUser(String x, String y) {

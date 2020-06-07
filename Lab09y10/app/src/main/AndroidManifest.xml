@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.Lista_Desmatricula"></activity>
+        <activity android:name=".Activity.AddUpdCurso"></activity>
+        <activity android:name=".Activity.Lista_Desmatricula" />
         <activity android:name=".Activity.Lista_Matricula" />
         <activity android:name=".Activity.Lista_Cursos" />
         <activity android:name=".Activity.LogIn">

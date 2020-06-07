@@ -13,14 +13,20 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lab09y10.Adaptador.EstudianteAdapter;
 import com.example.lab09y10.Helper.RecyclerItemTouchHelper;
 import com.example.lab09y10.Model.Estudiante;
 import com.example.lab09y10.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
@@ -28,9 +34,48 @@ public class MainActivity extends AppCompatActivity
 
     private RecyclerView mRecyclerView;
     private EstudianteAdapter mAdapter;
-    private List<Estudiante> formList;
+    private List<Estudiante> estudiantes_List;
     //private ModelData model;
     private SearchView searchView;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Estudiantes");
+
+        mRecyclerView = findViewById(R.id.recycler_EstudiantesFld);
+        estudiantes_List = new ArrayList<>();
+
+        //Hay que cargar todas los estudiantes en la base de datos dentro de este onCreate
+
+        //model = ModelData.getInstance();
+        //estudiantes_List = model.getFormList();
+        //mAdapter = new EstudianteAdapter(estudiantes_List, this);
+
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        mRecyclerView.setAdapter(mAdapter);
+
+        FloatingActionButton fab = findViewById(R.id.agregarEstudiante_btn);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToAddUpdEstudiante();
+            }
+        });
+
+        ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerItemTouchHelper(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, this);
+        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(mRecyclerView);
+        checkIntentInformation();
+        mAdapter.notifyDataSetChanged();
+        whiteNotificationBar(mRecyclerView);
+    }
 
     private void whiteNotificationBar(View view) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -46,17 +91,11 @@ public class MainActivity extends AppCompatActivity
         Toast.makeText(getApplicationContext(), "Selected", Toast.LENGTH_LONG).show();
     }
 
-    public void goToAddUpdEstudiante() {
-        Intent intent = new Intent(this, AddUpdEstudiante.class);
-        intent.putExtra("editable", false);
-        startActivity(intent);
-    }
-
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, int position) {
         if (direction == ItemTouchHelper.START) {
             if (viewHolder instanceof EstudianteAdapter.MyViewHolder) {
-                String name = formList.get(viewHolder.getAdapterPosition()).get_nombre();
+                String name = estudiantes_List.get(viewHolder.getAdapterPosition()).get_nombre();
                 final int deletedIndex = viewHolder.getAdapterPosition();
                 mAdapter.removeItem(viewHolder.getAdapterPosition());
                 Toast.makeText(getApplicationContext(), name + " removido!", Toast.LENGTH_LONG).show();
@@ -66,7 +105,7 @@ public class MainActivity extends AppCompatActivity
             Estudiante aux = mAdapter.getSwipedItem(viewHolder.getAdapterPosition());
             Intent intent = new Intent(this, AddUpdEstudiante.class);
             intent.putExtra("editable", true);
-            intent.putExtra("Form", aux);
+            intent.putExtra("Estudiante", aux);
             mAdapter.notifyDataSetChanged();
             startActivity(intent);
         }
@@ -133,13 +172,13 @@ public class MainActivity extends AppCompatActivity
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             Estudiante aux;
-            aux = (Estudiante) getIntent().getSerializableExtra("addForm");
+            aux = (Estudiante) getIntent().getSerializableExtra("addEstudiante");
             if (aux == null) {
-                aux = (Estudiante) getIntent().getSerializableExtra("editForm");
+                aux = (Estudiante) getIntent().getSerializableExtra("editEstudiante");
                 if (aux != null) {
                     //found an item that can be updated
                     boolean founded = false;
-                    for (Estudiante carrera : formList) {
+                    for (Estudiante carrera : estudiantes_List) {
                         if (carrera.get_nombre().equals(aux.get_nombre())) {
                             carrera.set_anios(aux.get_anios());
                             carrera.set_apellido(aux.get_apellido());
@@ -158,11 +197,16 @@ public class MainActivity extends AppCompatActivity
                 }
             } else {
 
-                formList.add(aux);
+                estudiantes_List.add(aux);
                 Toast.makeText(getApplicationContext(), " Just added", Toast.LENGTH_LONG).show();
             }
         }
     }
 
+    private void goToAddUpdEstudiante() {
+        Intent intent = new Intent(this, AddUpdEstudiante.class);
+        intent.putExtra("editable", false);
+        startActivity(intent);
+    }
 
 }//Cierre clase main

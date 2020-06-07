@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import com.example.lab09y10.Adaptador.EstudianteAdapter;
 import com.example.lab09y10.Model.Curso;
 import com.example.lab09y10.Model.Estudiante;
 import com.example.lab09y10.Model.Matricula;
@@ -97,10 +96,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public boolean updateCurso(Curso c){
+    public boolean updateCurso(Curso c) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String queryString = "UPDATE " + CURSO_TABLE + " SET " + CURSO_DESCRIPCION + " = "+ c.getDescripcion() +
-                " , " + CURSO_CREDITOS + " = "+ c.getCreditos() + " WHERE " + CURSO_ID + " = " + c.getId();
+        String queryString = "UPDATE " + CURSO_TABLE + " SET " + CURSO_DESCRIPCION + " = " + c.getDescripcion() +
+                " , " + CURSO_CREDITOS + " = " + c.getCreditos() + " WHERE " + CURSO_ID + " = " + c.getId();
 
         Cursor cursor = db.rawQuery(queryString, null);
 
@@ -173,10 +172,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public boolean updateEstudiante(Estudiante est){
+    public boolean updateEstudiante(Estudiante est) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String queryString = "UPDATE " + ESTUDIANTE_TABLE + " SET " + ESTUDIANTE_NOMBRE + " = "+ est.get_nombre() +
-                " , " + ESTUDIANTE_APELLIDO + " = "+ est.get_apellido() +  " , " + ESTUDIANTE_ANIO+ " = "+ est.get_anios()
+        String queryString = "UPDATE " + ESTUDIANTE_TABLE + " SET " + ESTUDIANTE_NOMBRE + " = " + est.get_nombre() +
+                " , " + ESTUDIANTE_APELLIDO + " = " + est.get_apellido() + " , " + ESTUDIANTE_ANIO + " = " + est.get_anios()
                 + " WHERE " + ESTUDIANTE_ID + " = " + est.get_id();
 
         Cursor cursor = db.rawQuery(queryString, null);
@@ -250,10 +249,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public List<Matricula> getMatriculas(){
+    public List<Matricula> getMatriculas() {
         List<Matricula> returnList = new ArrayList<>();
 
-        String queryString = "SELECT * FROM "+ MATRICULA_TABLE;
+        String queryString = "SELECT * FROM " + MATRICULA_TABLE;
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.rawQuery(queryString, null);
@@ -263,7 +262,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 String idEstudiante = cursor.getString(0);
                 String idCurso = cursor.getString(1);
 
-                returnList.add(new Matricula(idEstudiante,idCurso));
+                returnList.add(new Matricula(idEstudiante, idCurso));
 
             } while (cursor.moveToNext());
         }
@@ -275,6 +274,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     //------CRUD USUARIOS
 
-    
 
 }

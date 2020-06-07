@@ -7,13 +7,14 @@
             android:icon="@drawable/ic_home"
             android:title="@string/menu_home" />
         <item
-            android:id="@+id/nav_cursos_CRUD"
-            android:icon="@drawable/ic_curso_nav"
-            android:title="Cursos" />
-        <item
             android:id="@+id/nav_estudiante_CRUD"
             android:icon="@drawable/ic_estudiantes"
             android:title="Estudiantes" />
+        <item
+            android:id="@+id/nav_cursos_CRUD"
+            android:icon="@drawable/ic_curso_nav"
+            android:title="Cursos" />
+
         <item
             android:id="@+id/nav_matricular"
             android:icon="@drawable/ic_matricular"
