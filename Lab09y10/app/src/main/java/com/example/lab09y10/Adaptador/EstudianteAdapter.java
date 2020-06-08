@@ -19,7 +19,9 @@ import java.util.Iterator;
 import java.util.List;
 
 
-public class EstudianteAdapter extends RecyclerView.Adapter<EstudianteAdapter.MyViewHolder> implements Filterable {
+public class EstudianteAdapter
+        extends RecyclerView.Adapter<EstudianteAdapter.MyViewHolder>
+        implements Filterable {
 
     private List<Estudiante> carreraList;
     private List<Estudiante> carreraListFiltered;
@@ -172,6 +174,5 @@ public class EstudianteAdapter extends RecyclerView.Adapter<EstudianteAdapter.My
             });
         }
     }
-
 
 }
