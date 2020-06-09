@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.lab09y10.Model.Estudiante;
 import com.example.lab09y10.Model.Matricula;
 import com.example.lab09y10.R;
 
