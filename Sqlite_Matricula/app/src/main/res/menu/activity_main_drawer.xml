@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_casa"
+
+            android:title="@string/menu_home" />
+
+        <item
+            android:id="@+id/nav_student"
+            android:icon="@drawable/ic_estudiantes"
+            android:title="@string/menu_student" />
+        <item
+            android:id="@+id/nav_cursos"
+            android:icon="@drawable/ic_cursos"
+            android:title="@string/menu_cursos" />
+        <item
+            android:id="@+id/nav_matricula"
+            android:icon="@drawable/ic_matricular"
+            android:title="@string/menu_matricula" />
+        <item
+            android:id="@+id/nav_desmatricular"
+            android:icon="@drawable/ic_desmatricular"
+            android:title="@string/menu_desmatricular" />
+        <item
+            android:id="@+id/nav_salir"
+            android:icon="@drawable/ic_logout"
+            android:title="@string/menu_salir" />
+    </group>
+</menu>
