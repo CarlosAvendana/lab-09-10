@@ -37,4 +37,6 @@
     <string name="nombre_Curso">Nombre</string>
     <string name="descripcion_Curso">Descripcion</string>
     <string name="creditos_Curso">Creditos</string>
+    <string name="title_activity_list__matricula">List_Matricula</string>
+    <string name="codigo_codigo">Codigo Curso</string>
 </resources>
