@@ -25,14 +25,14 @@ public class ModelData implements Serializable {
 
     }
 
-    public List<Matricula> getMatriculaList() {
-        return matriculaList;
-    }
-
     public static ModelData getInstance() {
         if (singleton_instance == null)
             singleton_instance = new ModelData();
         return singleton_instance;
+    }
+
+    public List<Matricula> getMatriculaList() {
+        return matriculaList;
     }
 
     public List<Estudiante> getEstudianteList() {

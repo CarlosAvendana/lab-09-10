@@ -25,20 +25,20 @@ public class Matricula implements Serializable {
         this.descripcionDelCurso = descripcionDelCurso;
     }
 
-    public void setNombreCurso(String nombreCurso) {
-        this.nombreCurso = nombreCurso;
-    }
-
-    public void setDescripcionDelCurso(String descripcionDelCurso) {
-        this.descripcionDelCurso = descripcionDelCurso;
-    }
-
     public String getNombreCurso() {
         return nombreCurso;
     }
 
+    public void setNombreCurso(String nombreCurso) {
+        this.nombreCurso = nombreCurso;
+    }
+
     public String getDescripcionDelCurso() {
         return descripcionDelCurso;
+    }
+
+    public void setDescripcionDelCurso(String descripcionDelCurso) {
+        this.descripcionDelCurso = descripcionDelCurso;
     }
 
     public String getIdEstudiante() {

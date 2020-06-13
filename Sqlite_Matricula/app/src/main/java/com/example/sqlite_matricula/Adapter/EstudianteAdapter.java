@@ -158,6 +158,7 @@ public class EstudianteAdapter
         //two layers
         public RelativeLayout viewForeground, viewBackgroundDelete, viewBackgroundEdit;
         public ImageView icono;
+
         public MyViewHolder(View view) {
             super(view);
             icono = view.findViewById(R.id.icono_);

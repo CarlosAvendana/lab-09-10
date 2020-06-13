@@ -20,48 +20,48 @@
             android:id="@+id/imageView3"
             android:layout_width="match_parent"
             android:layout_height="175dp"
-            app:srcCompat="@drawable/ic_school"
-            android:layout_marginTop="30dp"/>
+            android:layout_marginTop="30dp"
+            app:srcCompat="@drawable/ic_school" />
 
         <EditText
             android:id="@+id/usuario_fld"
-            android:layout_marginTop="30dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="120dp"
+            android:backgroundTint="#FFFFFF"
+            android:ellipsize="start"
             android:ems="10"
             android:hint="Usernamer"
-            android:layout_marginLeft="120dp"
-            android:layout_marginRight="120dp"
-            android:textColorHint="#FFFFFF"
-            android:backgroundTint="#FFFFFF"
-            android:textColor="#FFFFFF"
-            android:ellipsize="start"
+            android:inputType="textPersonName"
             android:textAlignment="center"
-            android:inputType="textPersonName" />
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFFFFF" />
 
         <EditText
             android:id="@+id/pass_fld"
-            android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
             android:layout_marginLeft="120dp"
+            android:layout_marginTop="15dp"
             android:layout_marginRight="120dp"
-            android:hint="Password"
-            android:textColorHint="#FFFFFF"
             android:backgroundTint="#FFFFFF"
-            android:textColor="#FFFFFF"
             android:ellipsize="start"
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="textPassword"
             android:textAlignment="center"
-            android:inputType="textPassword" />
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFFFFF" />
 
         <ImageButton
             android:id="@+id/enviar_btn"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="150dp"
-            android:layout_marginRight="150dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="150dp"
             android:backgroundTint="@color/primary_light"
             app:srcCompat="@android:drawable/ic_menu_send" />
     </LinearLayout>
