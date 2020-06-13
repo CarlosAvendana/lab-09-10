@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sqlite_matricula.Adapter.CursoAdapter;
 import com.example.sqlite_matricula.Adapter.EstudianteAdapter;
+import com.example.sqlite_matricula.Adapter.MatriculaAdapter;
 
 
 public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
@@ -64,6 +65,10 @@ public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
                 backgroundViewEdit = ((CursoAdapter.MyViewHolder) viewHolder).viewBackgroundEdit;
                 backgroundViewDelete = ((CursoAdapter.MyViewHolder) viewHolder).viewBackgroundDelete;
                 foregroundView = ((CursoAdapter.MyViewHolder) viewHolder).viewForeground;
+            } else if (this.listener.getClass().getSimpleName().equals("List_Matricula")) {
+                backgroundViewEdit = ((MatriculaAdapter.MyViewHolder) viewHolder).viewBackgroundEdit;
+                backgroundViewDelete = ((MatriculaAdapter.MyViewHolder) viewHolder).viewBackgroundDelete;
+                foregroundView = ((MatriculaAdapter.MyViewHolder) viewHolder).viewForeground;
             }
 
 

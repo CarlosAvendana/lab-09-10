@@ -2,6 +2,7 @@ package com.example.sqlite_matricula.DatosPrueba;
 
 import com.example.sqlite_matricula.Model.Curso;
 import com.example.sqlite_matricula.Model.Estudiante;
+import com.example.sqlite_matricula.Model.Matricula;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -14,12 +15,18 @@ public class ModelData implements Serializable {
 
     private List<Estudiante> estudianteList;
     private List<Curso> cursoList;
+    private List<Matricula> matriculaList;
 
     public ModelData() {
         estudianteList = new ArrayList<>();
         cursoList = new ArrayList<>();
+        matriculaList = new ArrayList<>();
         prepareCarreraData();
 
+    }
+
+    public List<Matricula> getMatriculaList() {
+        return matriculaList;
     }
 
     public static ModelData getInstance() {
@@ -40,8 +47,13 @@ public class ModelData implements Serializable {
         Estudiante carrera = new Estudiante("402370159", "Carlos", "Obando", 10);
         estudianteList.add(carrera);
 
-        Curso curso = new Curso("EIF 400 Estructura de Datos", "Curso de carrera", 6);
+        Curso curso = new Curso("EIF400", "Estructura de Datos", 6);
         cursoList.add(curso);
+
+        Matricula matricula = new Matricula("EIF400", "EIF400", "Estructura de Datos");
+        matriculaList.add(matricula);
+
+
     }
 
 
