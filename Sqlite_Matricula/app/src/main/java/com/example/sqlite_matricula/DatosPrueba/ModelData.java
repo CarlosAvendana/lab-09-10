@@ -47,9 +47,13 @@ public class ModelData implements Serializable {
     public boolean updateEstudiante(Estudiante est){
         return this.databaseHelper.updateEstudiante(est);
     }
+    public boolean existeEstudiante(String user,String password){
+        return this.databaseHelper.existeEstudiante(user,password);
+    }
     public List<Estudiante> getEstudianteList() {
         return databaseHelper.getEstudiantes();
     }
+
 
     //----CURSOS
     public boolean addCurso(Curso c){
