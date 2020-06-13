@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="275dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".Activity.List_Matricula"
-    tools:showIn="@layout/activity_list__matricula">
+    tools:context=".Activity.List_Desmatricula"
+    tools:showIn="@layout/activity_list__desmatricula">
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_matriculaFld"
+        android:id="@+id/recycler_desmatriculaFld"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:clipToPadding="false"

@@ -70,6 +70,11 @@ public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
                 backgroundViewDelete = ((MatriculaAdapter.MyViewHolder) viewHolder).viewBackgroundDelete;
                 foregroundView = ((MatriculaAdapter.MyViewHolder) viewHolder).viewForeground;
             }
+            else if (this.listener.getClass().getSimpleName().equals("List_Desmatricula")) {
+                backgroundViewEdit = ((MatriculaAdapter.MyViewHolder) viewHolder).viewBackgroundEdit;
+                backgroundViewDelete = ((MatriculaAdapter.MyViewHolder) viewHolder).viewBackgroundDelete;
+                foregroundView = ((MatriculaAdapter.MyViewHolder) viewHolder).viewForeground;
+            }
 
 
             //Selected item

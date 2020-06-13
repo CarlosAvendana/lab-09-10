@@ -10,9 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Activity.List_Desmatricula"
+            android:label="@string/title_activity_list__desmatricula"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".Activity.List_Matricula"
             android:label="@string/title_activity_list__matricula"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activity.AddUpdCurso" />
         <activity
             android:name=".Activity.List_Cursos"

@@ -73,8 +73,11 @@ public class NavDrawer extends AppCompatActivity implements NavigationView.OnNav
             Toast.makeText(getApplicationContext(), "Cursos", Toast.LENGTH_SHORT).show();
             sent_List_Cursos();
         } else if (id == R.id.nav_matricula) {
-            Toast.makeText(getApplicationContext(), "Curso matriculados", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Cursos matriculados", Toast.LENGTH_SHORT).show();
             sent_List_Matricula();
+        } else if (id == R.id.nav_desmatricular) {
+            Toast.makeText(getApplicationContext(), "Cursos desmatricular", Toast.LENGTH_SHORT).show();
+            sent_List_Desmatricula();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -99,8 +102,12 @@ public class NavDrawer extends AppCompatActivity implements NavigationView.OnNav
     }
 
     public void sent_List_Matricula() {
-
         Intent a = new Intent(NavDrawer.this, List_Matricula.class);
+        startActivity(a);
+    }
+
+    public void sent_List_Desmatricula() {
+        Intent a = new Intent(NavDrawer.this, List_Desmatricula.class);
         startActivity(a);
     }
 
