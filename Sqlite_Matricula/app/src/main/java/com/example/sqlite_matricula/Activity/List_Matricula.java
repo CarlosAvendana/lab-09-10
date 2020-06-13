@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -44,6 +45,9 @@ public class List_Matricula extends AppCompatActivity
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Matricular");
 
+        campoTextoIdMatricular = (EditText) findViewById(R.id.editTextTextPersonName2);
+        campoTextoIdMatricular.setEnabled(false);
+
         mRecyclerView = findViewById(R.id.recycler_matriculaFld);
         estudianteList = new ArrayList<>();
 
@@ -69,6 +73,7 @@ public class List_Matricula extends AppCompatActivity
     @Override
     public void onContactSelected(Matricula carrera) {
         campoTextoIdMatricular.setText(carrera.getIdCurso());
+        //Toast.makeText(this, carrera.toString(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
