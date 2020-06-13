@@ -247,9 +247,47 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public List<Matricula> getMatriculasEst(String estId) {
         List<Matricula> returnList = new ArrayList<>();
 
-        String queryString = "SELECT MATRICULA_TABLE.CURSO_ID, CURSO_TABLE.CURSO_DESCRIPCION FROM " + MATRICULA_TABLE +
-                " INNER JOIN " + CURSO_TABLE + " ON MATRICULA_TABLE.ESTUDIANTE_ID = " + estId;
+        String queryString = "SELECT MATRICULA_TABLE.CURSO_ID, CURSO_TABLE.CURSO_DESCRIPCION, CURSO_TABLE.CURSO_CREDITOS FROM " + MATRICULA_TABLE +
+                " INNER JOIN " + CURSO_TABLE + " ON MATRICULA_TABLE.ESTUDIANTE_ID = "+ estId + " AND MATRICULA_TABLE.CURSO_ID = CURSO_TABLE.CURSO_ID";
         SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                String idCurso = cursor.getString(0);
+                String cursoDescripcion = cursor.getString(1);
+                int cursoCreditos = cursor.getInt(2);
+
+                returnList.add(new Matricula(idCurso,cursoDescripcion,cursoCreditos));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        return returnList;
+    }
+
+    public List<Matricula> getMatriculasNoEst(String estId){
+        List<Matricula> returnList = new ArrayList<>();
+
+        String queryString = "SELECT MATRICULA_TABLE.CURSO_ID, CURSO_TABLE.CURSO_DESCRIPCION, CURSO_TABLE.CURSO_CREDITOS FROM " + MATRICULA_TABLE +
+                " INNER JOIN " + CURSO_TABLE + " ON MATRICULA_TABLE.ESTUDIANTE_ID != "+ estId + " AND MATRICULA_TABLE.CURSO_ID = CURSO_TABLE.CURSO_ID";
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                String idCurso = cursor.getString(0);
+                String cursoDescripcion = cursor.getString(1);
+                int cursoCreditos = cursor.getInt(2);
+
+                returnList.add(new Matricula(idCurso,cursoDescripcion,cursoCreditos));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
 
         return returnList;
     }

@@ -28,6 +28,13 @@ public class ModelData implements Serializable {
     public boolean deleteMatricula(Matricula mat) {
         return this.databaseHelper.deleteMatricula(mat);
     }
+    public List<Matricula> getMatriculasEst(String estId){
+        return this.databaseHelper.getMatriculasEst(estId);
+    }
+    public List<Matricula> getMatriculasNoEst(String estId){
+        return this.databaseHelper.getMatriculasNoEst(estId);
+    }
+
 
     //-----ESTUDIANTES
     public boolean addEstudiante(Estudiante est) {
