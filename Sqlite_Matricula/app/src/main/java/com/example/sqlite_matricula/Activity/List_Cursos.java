@@ -39,7 +39,6 @@ public class List_Cursos extends AppCompatActivity
     private ModelData model;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,8 +51,8 @@ public class List_Cursos extends AppCompatActivity
         cursoList = new ArrayList<>();
 
         //cargando los estudiantes desde la base de datos
-        model= new ModelData(List_Cursos.this);
-        cursoList= model.getCursoList();
+        model = new ModelData(List_Cursos.this);
+        cursoList = model.getCursoList();
         mAdapter = new CursoAdapter(cursoList, this);
         //Termina de cargar los estudiantes de la base de datos
 

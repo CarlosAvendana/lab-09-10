@@ -40,4 +40,6 @@
     <string name="title_activity_list__matricula">List_Matricula</string>
     <string name="codigo_codigo">Codigo Curso</string>
     <string name="title_activity_list__desmatricula">List_Desmatricula</string>
+    <string name="Cedula">Cedula</string>
+    <string name="password">Contraseña</string>
 </resources>

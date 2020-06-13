@@ -14,9 +14,11 @@ import java.util.List;
 public class ModelData implements Serializable {
 
     DatabaseHelper databaseHelper;
+    private String cedula;
 
     public ModelData(Context context) {
         this.databaseHelper = new DatabaseHelper(context);
+        cedula = "";
 
     }
 
@@ -28,10 +30,12 @@ public class ModelData implements Serializable {
     public boolean deleteMatricula(Matricula mat) {
         return this.databaseHelper.deleteMatricula(mat);
     }
-    public List<Matricula> getMatriculasEst(String estId){
+
+    public List<Matricula> getMatriculasEst(String estId) {
         return this.databaseHelper.getMatriculasEst(estId);
     }
-    public List<Matricula> getMatriculasNoEst(String estId){
+
+    public List<Matricula> getMatriculasNoEst(String estId) {
         return this.databaseHelper.getMatriculasNoEst(estId);
     }
 
@@ -70,5 +74,19 @@ public class ModelData implements Serializable {
         return databaseHelper.getCursos();
     }
 
+    public DatabaseHelper getDatabaseHelper() {
+        return databaseHelper;
+    }
 
+    public void setDatabaseHelper(DatabaseHelper databaseHelper) {
+        this.databaseHelper = databaseHelper;
+    }
+
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
 }
