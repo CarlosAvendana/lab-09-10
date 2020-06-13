@@ -7,9 +7,18 @@ public class Estudiante implements Serializable {
     String _id;
     String _nombre;
     String _apellido;
+    String password;
     int _anios;
 
     public Estudiante() {
+    }
+
+    public Estudiante(String _id, String _nombre, String _apellido,String _password,int _anios) {
+        this._id = _id;
+        this._nombre = _nombre;
+        this._apellido = _apellido;
+        this.password = _password;
+        this._anios = _anios;
     }
 
     public Estudiante(String _id, String _nombre, String _apellido, int _anios) {
@@ -49,6 +58,14 @@ public class Estudiante implements Serializable {
 
     public void set_anios(int _anios) {
         this._anios = _anios;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override

@@ -1,5 +1,10 @@
 package com.example.sqlite_matricula.DatosPrueba;
 
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
+import com.example.sqlite_matricula.Database.DatabaseHelper;
 import com.example.sqlite_matricula.Model.Curso;
 import com.example.sqlite_matricula.Model.Estudiante;
 import com.example.sqlite_matricula.Model.Matricula;
@@ -11,50 +16,51 @@ import java.util.List;
 
 public class ModelData implements Serializable {
 
-    private static ModelData singleton_instance = null;
+    DatabaseHelper databaseHelper;
 
-    private List<Estudiante> estudianteList;
-    private List<Curso> cursoList;
-    private List<Matricula> matriculaList;
-
-    public ModelData() {
-        estudianteList = new ArrayList<>();
-        cursoList = new ArrayList<>();
-        matriculaList = new ArrayList<>();
-        prepareCarreraData();
+    public ModelData(Context context) {
+      this.databaseHelper = new DatabaseHelper(context);
 
     }
-
-    public static ModelData getInstance() {
-        if (singleton_instance == null)
-            singleton_instance = new ModelData();
-        return singleton_instance;
+    //-----MATRICULAS
+    public boolean addMatricula(Matricula mat){
+        return this.databaseHelper.addMatricula(mat);
     }
-
+    public boolean deleteMatricula(Matricula mat) {
+       return this.databaseHelper.deleteMatricula(mat);
+    }
     public List<Matricula> getMatriculaList() {
-        return matriculaList;
+        return databaseHelper.getMatriculas();
     }
 
+    //-----ESTUDIANTES
+    public boolean addEstudiante(Estudiante est){
+        return this.databaseHelper.addEstudiante(est);
+    }
+    public boolean deleteEstudiante(Estudiante est){
+        return this.databaseHelper.deleteEstudiante(est);
+    }
+    public boolean updateEstudiante(Estudiante est){
+        return this.databaseHelper.updateEstudiante(est);
+    }
     public List<Estudiante> getEstudianteList() {
-        return estudianteList;
+        return databaseHelper.getEstudiantes();
     }
 
+    //----CURSOS
+    public boolean addCurso(Curso c){
+        return this.databaseHelper.addCurso(c);
+    }
+    public boolean deleteCurso(Curso c){
+        return this.databaseHelper.deleteCurso(c);
+    }
+    public boolean updateCurso(Curso c){
+        return this.databaseHelper.updateCurso(c);
+    }
     public List<Curso> getCursoList() {
-        return cursoList;
+        return databaseHelper.getCursos();
     }
 
-    public void prepareCarreraData() {
-        Estudiante carrera = new Estudiante("402370159", "Carlos", "Obando", 10);
-        estudianteList.add(carrera);
-
-        Curso curso = new Curso("EIF400", "Estructura de Datos", 6);
-        cursoList.add(curso);
-
-        Matricula matricula = new Matricula("EIF400", "EIF400", "Estructura de Datos");
-        matriculaList.add(matricula);
-
-
-    }
 
 
 }

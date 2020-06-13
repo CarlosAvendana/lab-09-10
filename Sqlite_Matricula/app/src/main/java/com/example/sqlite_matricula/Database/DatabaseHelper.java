@@ -16,13 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-
-
-    public static final String USUARIO_TABLE = "USUARIO_TABLE";
-    public static final String USUARIO_NOMBRE = "USUARIO_NOMBRE";
-    public static final String USUARIO_CONTRASENA = "USUARIO_CONTRASENA";
-    public static final String USUARIO_ROL = "USUARIO_ROL";
-
+    
     public static final String ESTUDIANTE_TABLE = "ESTUDIANTE_TABLE";
     public static final String CURSO_TABLE = "CURSO_TABLE";
     public static final String MATRICULA_TABLE = "MATRICULA_TABLE";
@@ -33,6 +27,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String CURSO_ID = "CURSO_ID";
     public static final String CURSO_DESCRIPCION = "CURSO_DESCRIPCION";
     public static final String CURSO_CREDITOS = "CURSO_CREDITOS";
+    public static final String ESTUDIANTE_PASS = "ESTUDIANTE_PASS";
 
     public DatabaseHelper(@Nullable Context context) {
         super(context, "Lab9y10.db", null, 1);
@@ -41,17 +36,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //this is called the first time, create the tables
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTableStatement = "CREATE TABLE " + USUARIO_TABLE + " (" + USUARIO_NOMBRE + " TEXT," + USUARIO_CONTRASENA + " TEXT," + USUARIO_ROL + " INTEGER);" +
-                "CREATE TABLE " + ESTUDIANTE_TABLE + " ( " + ESTUDIANTE_ID + " TEXT PRIMARY KEY, " + ESTUDIANTE_NOMBRE + " TEXT, " + ESTUDIANTE_APELLIDO + " TEXT, " + ESTUDIANTE_ANIO + " INTEGER);" +
-                "CREATE TABLE " + CURSO_TABLE + " ( " + CURSO_ID + " TEXT PRIMARY KEY, " + CURSO_DESCRIPCION + " TEXT, " + CURSO_CREDITOS + " INTEGER);" +
-                "CREATE TABLE " + MATRICULA_TABLE + " (" +
-                ESTUDIANTE_ID + " TEXT NOT NULL," +
-                CURSO_ID + " TEXT NOT NULL," +
-                "CONSTRAINT " + MATRICULA_TABLE + "_PK PRIMARY KEY(" + ESTUDIANTE_ID + "," + CURSO_ID + ")," +
-                "CONSTRAINT " + MATRICULA_TABLE + "_ESTUDIANTE_FK FOREIGN  KEY (" + ESTUDIANTE_ID + ") REFERENCES  " + ESTUDIANTE_TABLE + " ( " + ESTUDIANTE_ID + " )" +
-                "CONSTRAINT " + MATRICULA_TABLE + "_CURSO_FK FOREIGN  KEY (" + CURSO_ID + ") REFERENCES  " + CURSO_TABLE + " (" + CURSO_ID + ")" +
-                ");";
+        String createTableStatement = "CREATE TABLE " + ESTUDIANTE_TABLE + " ( " + ESTUDIANTE_ID + " TEXT PRIMARY KEY, " + ESTUDIANTE_NOMBRE + " TEXT, " + ESTUDIANTE_APELLIDO + " TEXT, " + ESTUDIANTE_PASS + " TEXT ," + ESTUDIANTE_ANIO + " INTEGER);" ;
+        String createTableCurso = "CREATE TABLE " + CURSO_TABLE + " ( " + CURSO_ID + " TEXT PRIMARY KEY, " + CURSO_DESCRIPCION + " TEXT, " + CURSO_CREDITOS + " INTEGER);";
+        String createTableMatricula="CREATE TABLE MATRICULA_TABLE (ESTUDIANTE_ID TEXT NOT NULL, CURSO_ID TEXT NOT NULL,CONSTRAINT MATRICULA_TABLE_PK PRIMARY KEY(ESTUDIANTE_ID,CURSO_ID),CONSTRAINT MATRICULA_TABLE_ESTUDIANTE_FK FOREIGN  KEY (ESTUDIANTE_ID) REFERENCES  ESTUDIANTE_TABLE ( ESTUDIANTE_ID ), CONSTRAINT MATRICULA_TABLE_CURSO_FK FOREIGN  KEY (CURSO_ID) REFERENCES  CURSO_TABLE (CURSO_ID));";
         db.execSQL(createTableStatement);
+        db.execSQL(createTableCurso);
+        db.execSQL(createTableMatricula);
     }
 
     @Override
@@ -149,6 +139,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(ESTUDIANTE_ID, est.get_id());
         cv.put(ESTUDIANTE_NOMBRE, est.get_nombre());
         cv.put(ESTUDIANTE_APELLIDO, est.get_apellido());
+        cv.put(ESTUDIANTE_PASS,est.getPassword());
         cv.put(ESTUDIANTE_ANIO, est.get_anios());
 
         long insert = db.insert(ESTUDIANTE_TABLE, null, cv);
@@ -175,7 +166,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean updateEstudiante(Estudiante est) {
         SQLiteDatabase db = this.getWritableDatabase();
         String queryString = "UPDATE " + ESTUDIANTE_TABLE + " SET " + ESTUDIANTE_NOMBRE + " = " + est.get_nombre() +
-                " , " + ESTUDIANTE_APELLIDO + " = " + est.get_apellido() + " , " + ESTUDIANTE_ANIO + " = " + est.get_anios()
+                " , " + ESTUDIANTE_APELLIDO + " = " + est.get_apellido() + " , " + ESTUDIANTE_PASS + " = " + est.getPassword() + " , " + ESTUDIANTE_ANIO + " = " + est.get_anios()
                 + " WHERE " + ESTUDIANTE_ID + " = " + est.get_id();
 
         Cursor cursor = db.rawQuery(queryString, null);
@@ -204,9 +195,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 String idEstudiante = cursor.getString(0);
                 String nomEstudiante = cursor.getString(1);
                 String apeEstudiante = cursor.getString(2);
-                int anioEstudiante = cursor.getInt(3);
+                String passEstudiante = cursor.getString(3);
+                int anioEstudiante = cursor.getInt(4);
 
-                returnList.add(new Estudiante(idEstudiante, nomEstudiante, apeEstudiante, anioEstudiante));
+                returnList.add(new Estudiante(idEstudiante, nomEstudiante, apeEstudiante, passEstudiante, anioEstudiante));
             } while (cursor.moveToNext());
         }
         cursor.close();
@@ -272,7 +264,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return returnList;
     }
 
-    //------CRUD USUARIOS
 
 
 }

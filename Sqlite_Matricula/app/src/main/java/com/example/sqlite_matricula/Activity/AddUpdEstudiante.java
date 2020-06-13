@@ -7,6 +7,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.sqlite_matricula.Database.DatabaseHelper;
 import com.example.sqlite_matricula.Model.Estudiante;
 import com.example.sqlite_matricula.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -20,6 +21,7 @@ public class AddUpdEstudiante extends AppCompatActivity {
     private EditText nombreFld;
     private EditText apellidoFld;
     private EditText aniosFld;
+    DatabaseHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,12 +30,15 @@ public class AddUpdEstudiante extends AppCompatActivity {
         fBtn = findViewById(R.id.addUpdEstudianteBtn);
         getSupportActionBar().setTitle("Estudiante");
 
+        databaseHelper = new DatabaseHelper(AddUpdEstudiante.this);
+
         editable = true;
 
         idFld = findViewById(R.id.addUpd_Estudiante_Id);
         nombreFld = findViewById(R.id.addUpd_Estudiante_Nombre);
         apellidoFld = findViewById(R.id.addUpd_Estudiante_Apellido);
         aniosFld = findViewById(R.id.addUpd_Estudiante_Anios);
+
 
         idFld.setText("");
         nombreFld.setText("");
@@ -80,6 +85,7 @@ public class AddUpdEstudiante extends AppCompatActivity {
                     nombreFld.getText().toString(),
                     apellidoFld.getText().toString(),
                     Integer.parseInt(aniosFld.getText().toString()));
+            databaseHelper.addEstudiante(est);
             Intent intent = new Intent(getBaseContext(), List_Estudiante.class);
             intent.putExtra("addEstudiante", est);
             startActivity(intent);
@@ -90,6 +96,7 @@ public class AddUpdEstudiante extends AppCompatActivity {
     public void editEstudiante() {
         if (validateForm()) {
             Estudiante est = new Estudiante(idFld.getText().toString(), nombreFld.getText().toString(), apellidoFld.getText().toString(), Integer.parseInt(aniosFld.getText().toString()));
+            databaseHelper.updateEstudiante(est);
             Intent intent = new Intent(getBaseContext(), List_Estudiante.class);
             intent.putExtra("editEstudiante", est);
             startActivity(intent);

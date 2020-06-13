@@ -50,7 +50,7 @@ public class List_Estudiante extends AppCompatActivity
         mRecyclerView = findViewById(R.id.recycler_estudiantesFld);
         estudianteList = new ArrayList<>();
 
-        model = ModelData.getInstance();
+        model = new ModelData(List_Estudiante.this);
         estudianteList = model.getEstudianteList();
         mAdapter = new EstudianteAdapter(estudianteList, this);
         //Hay que cargar todas los estudiantes en la base de datos dentro de este onCreate

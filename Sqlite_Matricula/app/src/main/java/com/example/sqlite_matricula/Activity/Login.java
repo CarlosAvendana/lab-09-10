@@ -9,6 +9,8 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.sqlite_matricula.Database.DatabaseHelper;
+import com.example.sqlite_matricula.Model.Estudiante;
 import com.example.sqlite_matricula.R;
 
 public class Login extends AppCompatActivity {
@@ -17,6 +19,7 @@ public class Login extends AppCompatActivity {
     EditText userName;
     EditText password;
     ImageView icono;
+    DatabaseHelper databaseHelper;
 
 
     @Override
@@ -33,14 +36,21 @@ public class Login extends AppCompatActivity {
                 sent_To_NavDrawer_Activity();
             }
         });
+        databaseHelper = new DatabaseHelper(Login.this);
+        //datosPrueba();
 
     }
 
-
+   /*public void datosPrueba(){
+        databaseHelper.addEstudiante(new Estudiante("117280151","Felipe","Piedra","123456",21));
+        databaseHelper.addEstudiante(new Estudiante("402370159","Carlos","Obando","123456",22));
+    }*/
     public void sent_To_NavDrawer_Activity() {
         Intent i = new Intent(Login.this, NavDrawer.class);
         startActivity(i);
         this.finish();
     }
+
+
 
 }
