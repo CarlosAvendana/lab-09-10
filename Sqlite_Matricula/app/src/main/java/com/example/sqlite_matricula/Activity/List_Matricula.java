@@ -50,8 +50,8 @@ public class List_Matricula extends AppCompatActivity
         mRecyclerView = findViewById(R.id.recycler_matriculaFld);
         estudianteList = new ArrayList<>();
 
-        model = ModelData.getInstance();
-        estudianteList = model.getMatriculaList();
+        // model = ModelData.getInstance();
+        //estudianteList = model.getMatriculaList();
 
         mAdapter = new MatriculaAdapter(estudianteList, this);
 

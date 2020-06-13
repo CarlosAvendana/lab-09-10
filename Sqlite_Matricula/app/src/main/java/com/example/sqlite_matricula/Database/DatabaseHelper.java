@@ -36,9 +36,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //this is called the first time, create the tables
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTableStatement = "CREATE TABLE " + ESTUDIANTE_TABLE + " ( " + ESTUDIANTE_ID + " TEXT PRIMARY KEY, " + ESTUDIANTE_NOMBRE + " TEXT, " + ESTUDIANTE_APELLIDO + " TEXT, " + ESTUDIANTE_PASS + " TEXT ," + ESTUDIANTE_ANIO + " INTEGER);" ;
+        String createTableStatement = "CREATE TABLE " + ESTUDIANTE_TABLE + " ( " + ESTUDIANTE_ID + " TEXT PRIMARY KEY, " + ESTUDIANTE_NOMBRE + " TEXT, " + ESTUDIANTE_APELLIDO + " TEXT, " + ESTUDIANTE_PASS + " TEXT ," + ESTUDIANTE_ANIO + " INTEGER);";
         String createTableCurso = "CREATE TABLE " + CURSO_TABLE + " ( " + CURSO_ID + " TEXT PRIMARY KEY, " + CURSO_DESCRIPCION + " TEXT, " + CURSO_CREDITOS + " INTEGER);";
-        String createTableMatricula="CREATE TABLE MATRICULA_TABLE (ESTUDIANTE_ID TEXT NOT NULL, CURSO_ID TEXT NOT NULL,CONSTRAINT MATRICULA_TABLE_PK PRIMARY KEY(ESTUDIANTE_ID,CURSO_ID),CONSTRAINT MATRICULA_TABLE_ESTUDIANTE_FK FOREIGN  KEY (ESTUDIANTE_ID) REFERENCES  ESTUDIANTE_TABLE ( ESTUDIANTE_ID ), CONSTRAINT MATRICULA_TABLE_CURSO_FK FOREIGN  KEY (CURSO_ID) REFERENCES  CURSO_TABLE (CURSO_ID));";
+        String createTableMatricula = "CREATE TABLE MATRICULA_TABLE (ESTUDIANTE_ID TEXT NOT NULL, CURSO_ID TEXT NOT NULL,CONSTRAINT MATRICULA_TABLE_PK PRIMARY KEY(ESTUDIANTE_ID,CURSO_ID),CONSTRAINT MATRICULA_TABLE_ESTUDIANTE_FK FOREIGN  KEY (ESTUDIANTE_ID) REFERENCES  ESTUDIANTE_TABLE ( ESTUDIANTE_ID ), CONSTRAINT MATRICULA_TABLE_CURSO_FK FOREIGN  KEY (CURSO_ID) REFERENCES  CURSO_TABLE (CURSO_ID));";
         db.execSQL(createTableStatement);
         db.execSQL(createTableCurso);
         db.execSQL(createTableMatricula);
@@ -139,7 +139,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(ESTUDIANTE_ID, est.get_id());
         cv.put(ESTUDIANTE_NOMBRE, est.get_nombre());
         cv.put(ESTUDIANTE_APELLIDO, est.get_apellido());
-        cv.put(ESTUDIANTE_PASS,est.getPassword());
+        cv.put(ESTUDIANTE_PASS, est.getPassword());
         cv.put(ESTUDIANTE_ANIO, est.get_anios());
 
         long insert = db.insert(ESTUDIANTE_TABLE, null, cv);
@@ -244,16 +244,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     //---------METODOS APARTE
 
-    public List<Matricula> getMatriculasEst(String estId){
+    public List<Matricula> getMatriculasEst(String estId) {
         List<Matricula> returnList = new ArrayList<>();
 
         String queryString = "SELECT MATRICULA_TABLE.CURSO_ID, CURSO_TABLE.CURSO_DESCRIPCION FROM " + MATRICULA_TABLE +
-                " INNER JOIN " + CURSO_TABLE + " ON MATRICULA_TABLE.ESTUDIANTE_ID = "+ estId;
+                " INNER JOIN " + CURSO_TABLE + " ON MATRICULA_TABLE.ESTUDIANTE_ID = " + estId;
         SQLiteDatabase db = this.getReadableDatabase();
 
-    return returnList;
+        return returnList;
     }
-
 
 
 }

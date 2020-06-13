@@ -7,6 +7,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.sqlite_matricula.DatosPrueba.ModelData;
 import com.example.sqlite_matricula.Model.Curso;
 import com.example.sqlite_matricula.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -19,6 +20,7 @@ public class AddUpdCurso extends AppCompatActivity {
     private EditText idFld;
     private EditText descripcionFld;
     private EditText creditosFld;
+    private ModelData model;
 
 
     @Override
@@ -27,6 +29,7 @@ public class AddUpdCurso extends AppCompatActivity {
         setContentView(R.layout.activity_add_upd_curso);
         getSupportActionBar().setTitle("Curso");
 
+        model = new ModelData(AddUpdCurso.this);
         fBtn = findViewById(R.id.addUpdCursoBtn);
         editable = true;
 
@@ -74,6 +77,7 @@ public class AddUpdCurso extends AppCompatActivity {
             Curso est = new Curso(idFld.getText().toString(),
                     descripcionFld.getText().toString(),
                     Integer.parseInt(creditosFld.getText().toString()));
+            model.addCurso(est);
 
             Intent intent = new Intent(getBaseContext(), List_Estudiante.class);
             intent.putExtra("addCurso", est);
@@ -87,7 +91,7 @@ public class AddUpdCurso extends AppCompatActivity {
             Curso est = new Curso(idFld.getText().toString(),
                     descripcionFld.getText().toString(),
                     Integer.parseInt(creditosFld.getText().toString()));
-
+            model.updateCurso(est);
             Intent intent = new Intent(getBaseContext(), List_Estudiante.class);
             intent.putExtra("addCurso", est);
             startActivity(intent);

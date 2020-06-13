@@ -50,12 +50,11 @@ public class List_Estudiante extends AppCompatActivity
         mRecyclerView = findViewById(R.id.recycler_estudiantesFld);
         estudianteList = new ArrayList<>();
 
+        //cargando los estudiantes desde la base de datos
         model = new ModelData(List_Estudiante.this);
         estudianteList = model.getEstudianteList();
         mAdapter = new EstudianteAdapter(estudianteList, this);
-        //Hay que cargar todas los estudiantes en la base de datos dentro de este onCreate
-        //estudianteList = model.getCarreraList();
-        //mAdapter = new EstudianteAdapter(estudianteList, this);
+        //Termina de cargar los estudiantes de la base de datos
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
