@@ -44,8 +44,8 @@ public class MatriculaAdapter extends RecyclerView.Adapter<MatriculaAdapter.MyVi
     public void onBindViewHolder(MatriculaAdapter.MyViewHolder holder, final int position) {
         // basically a render
         final Matricula carrera = carreraListFiltered.get(position);
-        holder.title1.setText(carrera.getNombreCurso());
-        holder.title2.setText(carrera.getNombreCurso());
+        holder.title1.setText(carrera.getIdCurso());
+        holder.title2.setText(carrera.getCreditos());
         holder.description.setText(carrera.getDescripcionDelCurso());
     }
 

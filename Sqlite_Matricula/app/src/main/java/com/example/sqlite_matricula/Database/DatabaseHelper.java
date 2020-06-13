@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    
+
     public static final String ESTUDIANTE_TABLE = "ESTUDIANTE_TABLE";
     public static final String CURSO_TABLE = "CURSO_TABLE";
     public static final String MATRICULA_TABLE = "MATRICULA_TABLE";
@@ -241,27 +241,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public List<Matricula> getMatriculas() {
+
+    //---------METODOS APARTE
+
+    public List<Matricula> getMatriculasEst(String estId){
         List<Matricula> returnList = new ArrayList<>();
 
-        String queryString = "SELECT * FROM " + MATRICULA_TABLE;
+        String queryString = "SELECT MATRICULA_TABLE.CURSO_ID, CURSO_TABLE.CURSO_DESCRIPCION FROM " + MATRICULA_TABLE +
+                " INNER JOIN " + CURSO_TABLE + " ON MATRICULA_TABLE.ESTUDIANTE_ID = "+ estId;
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.rawQuery(queryString, null);
-
-        if (cursor.moveToFirst()) {
-            do {
-                String idEstudiante = cursor.getString(0);
-                String idCurso = cursor.getString(1);
-
-                returnList.add(new Matricula(idEstudiante, idCurso));
-
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-        db.close();
-
-        return returnList;
+    return returnList;
     }
 
 

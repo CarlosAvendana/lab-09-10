@@ -29,9 +29,6 @@ public class ModelData implements Serializable {
     public boolean deleteMatricula(Matricula mat) {
        return this.databaseHelper.deleteMatricula(mat);
     }
-    public List<Matricula> getMatriculaList() {
-        return databaseHelper.getMatriculas();
-    }
 
     //-----ESTUDIANTES
     public boolean addEstudiante(Estudiante est){
