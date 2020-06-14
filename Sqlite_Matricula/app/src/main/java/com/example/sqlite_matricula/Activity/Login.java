@@ -2,6 +2,7 @@ package com.example.sqlite_matricula.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -36,13 +37,28 @@ public class Login extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sent_To_NavDrawer_Activity();
+                if(!TextUtils.isEmpty(userName.getText()) && !TextUtils.isEmpty(password.getText())){
+                    if (isAdmin(userName.getText().toString(), password.getText().toString())) {
+                        Toast.makeText(Login.this, "Bienvenido admin", Toast.LENGTH_LONG).show();
+                        sent_To_NavDrawer_Activity();
+                    } else {
+                        if (isEstudiante(userName.getText().toString(), password.getText().toString())) {
+                            Toast.makeText(Login.this, "Bienvenido estudiante", Toast.LENGTH_LONG).show();
+                            sent_To_NavDrawer_Activity();
+                        }
+                        Toast.makeText(Login.this, "No se encuentra registrado", Toast.LENGTH_LONG).show();
+
+                    }
+                }else{
+                    Toast.makeText(Login.this, "INGRESE DATOS POR FAVOR", Toast.LENGTH_LONG).show();
+                }
+                //sent_To_NavDrawer_Activity();
             }
         });
 
-        datosPrueba();
+        //datosPrueba();
 
-        if (isAdmin(userName.getText().toString(), password.getText().toString())) {
+       /* if (isAdmin(userName.getText().toString(), password.getText().toString())) {
             Toast.makeText(Login.this, "Bienvenido admin", Toast.LENGTH_LONG).show();
             sent_To_NavDrawer_Activity();
         } else {
@@ -52,7 +68,7 @@ public class Login extends AppCompatActivity {
             }
             Toast.makeText(Login.this, "No se encuentra registrado", Toast.LENGTH_LONG).show();
 
-        }
+        }*/
 
         //primero valida si es el admin
         //sino es que valide que el estudiante esta en la base datos
@@ -73,6 +89,7 @@ public class Login extends AppCompatActivity {
         model.addCurso(nnn);
 
     }
+
 
     public void sent_To_NavDrawer_Activity() {
         Intent i = new Intent(Login.this, NavDrawer.class);
