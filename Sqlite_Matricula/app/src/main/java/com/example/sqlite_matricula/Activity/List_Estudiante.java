@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -23,7 +22,6 @@ import com.example.sqlite_matricula.DatosPrueba.ModelData;
 import com.example.sqlite_matricula.Helper.RecyclerItemTouchHelper;
 import com.example.sqlite_matricula.Model.Estudiante;
 import com.example.sqlite_matricula.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,14 +59,6 @@ public class List_Estudiante extends AppCompatActivity
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         mRecyclerView.setAdapter(mAdapter);
-
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sent_To_AddUpdEstudiante();
-            }
-        });
 
         ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerItemTouchHelper(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, this);
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(mRecyclerView);
