@@ -79,7 +79,7 @@ public class AddUpdCurso extends AppCompatActivity {
                     Integer.parseInt(creditosFld.getText().toString()));
             model.addCurso(est);
 
-            Intent intent = new Intent(getBaseContext(), List_Estudiante.class);
+            Intent intent = new Intent(getBaseContext(), List_Cursos.class);
             intent.putExtra("addCurso", est);
             startActivity(intent);
             finish();
@@ -92,7 +92,7 @@ public class AddUpdCurso extends AppCompatActivity {
                     descripcionFld.getText().toString(),
                     Integer.parseInt(creditosFld.getText().toString()));
             model.updateCurso(est);
-            Intent intent = new Intent(getBaseContext(), List_Estudiante.class);
+            Intent intent = new Intent(getBaseContext(), List_Cursos.class);
             intent.putExtra("addCurso", est);
             startActivity(intent);
             finish();
