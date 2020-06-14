@@ -13,8 +13,8 @@ import java.util.List;
 
 public class ModelData implements Serializable {
 
-    DatabaseHelper databaseHelper;
     public static String cedula;
+    DatabaseHelper databaseHelper;
     private String admin;
 
     public ModelData(Context context) {

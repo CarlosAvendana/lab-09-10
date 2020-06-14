@@ -35,7 +35,7 @@ public class Login extends AppCompatActivity {
         password = findViewById(R.id.pass_fld);
         model = new ModelData(Login.this);
 
-       // datosPrueba();
+        // datosPrueba();
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,13 +95,13 @@ public class Login extends AppCompatActivity {
         model.addCurso(nn);
         model.addCurso(nnn);
 
-        Matricula matricula1 = new Matricula("117280151","EIF400");
-        Matricula matricula2 = new Matricula("117280151","EIF401");
-        Matricula matricula3 = new Matricula("117280151","EIF402");
+        Matricula matricula1 = new Matricula("117280151", "EIF400");
+        Matricula matricula2 = new Matricula("117280151", "EIF401");
+        Matricula matricula3 = new Matricula("117280151", "EIF402");
 
-        Matricula matricula4 = new Matricula("117080857","EIF400");
-        Matricula matricula5 = new Matricula("116340204","EIF400");
-        Matricula matricula6 = new Matricula("117090732","EIF400");
+        Matricula matricula4 = new Matricula("117080857", "EIF400");
+        Matricula matricula5 = new Matricula("116340204", "EIF400");
+        Matricula matricula6 = new Matricula("117090732", "EIF400");
 
         model.addMatricula(matricula1);
         model.addMatricula(matricula2);

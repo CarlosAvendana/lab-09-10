@@ -8,7 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -39,7 +39,7 @@ public class List_Matricula extends AppCompatActivity
     private SearchView searchView;
     private ModelData model;
     private EditText campoTextoIdMatricular;
-    private ImageView bntEnviar;
+    private ImageButton bntEnviar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +59,7 @@ public class List_Matricula extends AppCompatActivity
 
         //
         model = new ModelData(List_Matricula.this);
-        estudianteList = model.getMatriculasEst(ModelData.cedula);
+        estudianteList = model.getMatriculasNoEst(ModelData.cedula);
         mAdapter = new MatriculaAdapter(estudianteList, this);
         //
 

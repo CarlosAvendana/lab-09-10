@@ -3,10 +3,14 @@ package com.example.sqlite_matricula.Activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -35,6 +39,8 @@ public class List_Desmatricula extends AppCompatActivity
     private SearchView searchView;
     private ModelData model;
     private EditText campoTextoIdDesmatricular;
+    private ImageButton btnDesmatricular;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,13 +53,17 @@ public class List_Desmatricula extends AppCompatActivity
         campoTextoIdDesmatricular = (EditText) findViewById(R.id.campoADesmatricularFLD);
         campoTextoIdDesmatricular.setEnabled(false);
 
+        btnDesmatricular = findViewById(R.id.bntDesmatricular);
+
+
         mRecyclerView = findViewById(R.id.recycler_desmatriculaFld);
         estudianteList = new ArrayList<>();
 
-        // model = ModelData.getInstance();
-        // estudianteList = model.getMatriculaList();
-
+        //
+        model = new ModelData(List_Desmatricula.this);
+        estudianteList = model.getMatriculasEst(ModelData.cedula);
         mAdapter = new MatriculaAdapter(estudianteList, this);
+        //
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -63,10 +73,14 @@ public class List_Desmatricula extends AppCompatActivity
 
         ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerItemTouchHelper(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, this);
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(mRecyclerView);
-
-
         mAdapter.notifyDataSetChanged();
 
+        btnDesmatricular.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                desmatricular();
+            }
+        });
     }
 
     @Override
@@ -118,6 +132,14 @@ public class List_Desmatricula extends AppCompatActivity
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void desmatricular() {
+        if (!TextUtils.isEmpty(campoTextoIdDesmatricular.getText())) {
+            model.addMatricula(new Matricula(model.getCedula(), campoTextoIdDesmatricular.getText().toString()));
+        } else {
+            Toast.makeText(this, "Seleccione un curso", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }// cierre de la clase lista desmatricula
