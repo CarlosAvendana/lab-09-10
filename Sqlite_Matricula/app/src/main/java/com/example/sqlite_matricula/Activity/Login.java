@@ -37,7 +37,7 @@ public class Login extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!TextUtils.isEmpty(userName.getText()) && !TextUtils.isEmpty(password.getText())){
+                if (!TextUtils.isEmpty(userName.getText()) && !TextUtils.isEmpty(password.getText())) {
                     if (isAdmin(userName.getText().toString(), password.getText().toString())) {
                         Toast.makeText(Login.this, "Bienvenido admin", Toast.LENGTH_LONG).show();
                         sent_To_NavDrawer_Activity();
@@ -49,7 +49,7 @@ public class Login extends AppCompatActivity {
                         Toast.makeText(Login.this, "No se encuentra registrado", Toast.LENGTH_LONG).show();
 
                     }
-                }else{
+                } else {
                     Toast.makeText(Login.this, "INGRESE DATOS POR FAVOR", Toast.LENGTH_LONG).show();
                 }
                 //sent_To_NavDrawer_Activity();

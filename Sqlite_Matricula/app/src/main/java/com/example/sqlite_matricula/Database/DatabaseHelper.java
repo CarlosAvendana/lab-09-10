@@ -68,10 +68,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public boolean deleteCurso(Curso c) {
+    public boolean deleteCurso(String c) {
 
         SQLiteDatabase db = this.getWritableDatabase();
-        String queryString = "DELETE FROM " + CURSO_TABLE + " WHERE " + CURSO_ID + " = " + c.getId();
+        String queryString = "DELETE FROM " + CURSO_TABLE + " WHERE " + CURSO_ID + " = " + c.;
 
         Cursor cursor = db.rawQuery(queryString, null);
 
@@ -175,10 +175,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public boolean existeEstudiante(String user,String password){
+    public boolean existeEstudiante(String user, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
         String queryString = "SELECT * FROM " + ESTUDIANTE_TABLE + " WHERE " + ESTUDIANTE_ID + " = " + user +
-                " AND "+ ESTUDIANTE_PASS + " = "+ password;
+                " AND " + ESTUDIANTE_PASS + " = " + password;
         Cursor cursor = db.rawQuery(queryString, null);
         return cursor.moveToFirst();
 

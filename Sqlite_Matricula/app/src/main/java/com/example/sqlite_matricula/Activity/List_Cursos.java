@@ -89,7 +89,11 @@ public class List_Cursos extends AppCompatActivity
             if (viewHolder instanceof CursoAdapter.MyViewHolder) {
                 String name = cursoList.get(viewHolder.getAdapterPosition()).getId();
                 final int deletedIndex = viewHolder.getAdapterPosition();
+                model.deleteCurso(name);
                 mAdapter.removeItem(viewHolder.getAdapterPosition());
+                //Eliminar todas las matriculas con este curso
+                //Eliminar el curso
+
                 Toast.makeText(getApplicationContext(), name + " removido!", Toast.LENGTH_LONG).show();
             }
         } else {

@@ -94,7 +94,7 @@ public class List_Estudiante extends AppCompatActivity
                 mAdapter.removeItem(viewHolder.getAdapterPosition());
                 //Eliminar todas las matriculas
                 //Eliminar el estudiante
-               // Estudiante eliminarEst = mAdapter.getSwipedItem(viewHolder.getAdapterPosition());
+                // Estudiante eliminarEst = mAdapter.getSwipedItem(viewHolder.getAdapterPosition());
                 Toast.makeText(getApplicationContext(), name + " removido!", Toast.LENGTH_LONG).show();
             }
         } else {
