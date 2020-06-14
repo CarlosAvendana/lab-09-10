@@ -89,12 +89,12 @@ public class List_Estudiante extends AppCompatActivity
             if (viewHolder instanceof EstudianteAdapter.MyViewHolder) {
                 String name = estudianteList.get(viewHolder.getAdapterPosition()).get_nombre();
                 final int deletedIndex = viewHolder.getAdapterPosition();
+                String cedula = estudianteList.get(viewHolder.getAdapterPosition()).get_id();
+                model.deleteEstudiante(cedula);
                 mAdapter.removeItem(viewHolder.getAdapterPosition());
                 //Eliminar todas las matriculas
                 //Eliminar el estudiante
-                Estudiante eliminarEst = mAdapter.getSwipedItem(viewHolder.getAdapterPosition());
-                model.deleteEstudiante(eliminarEst);
-
+               // Estudiante eliminarEst = mAdapter.getSwipedItem(viewHolder.getAdapterPosition());
                 Toast.makeText(getApplicationContext(), name + " removido!", Toast.LENGTH_LONG).show();
             }
         } else {

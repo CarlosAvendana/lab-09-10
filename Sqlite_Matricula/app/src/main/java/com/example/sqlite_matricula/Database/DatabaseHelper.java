@@ -88,8 +88,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public boolean updateCurso(Curso c) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String queryString = "UPDATE " + CURSO_TABLE + " SET " + CURSO_DESCRIPCION + " = " + c.getDescripcion() +
-                " , " + CURSO_CREDITOS + " = " + c.getCreditos() + " WHERE " + CURSO_ID + " = " + c.getId();
+        String queryString = "UPDATE " + CURSO_TABLE + " SET " + CURSO_DESCRIPCION + " = '" + c.getDescripcion() +
+                "' , " + CURSO_CREDITOS + " = '" + c.getCreditos() + "' WHERE " + CURSO_ID + " = " + c.getId();
 
         Cursor cursor = db.rawQuery(queryString, null);
 
@@ -151,18 +151,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public boolean deleteEstudiante(Estudiante est) {
+    public boolean deleteEstudiante(String est) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String queryString = "DELETE FROM " + ESTUDIANTE_TABLE + " WHERE " + ESTUDIANTE_ID + " = " + est.get_id();
+        String queryString = "DELETE FROM " + ESTUDIANTE_TABLE + " WHERE " + ESTUDIANTE_ID + " = " + est;
         Cursor cursor = db.rawQuery(queryString, null);
         return cursor.moveToFirst();
     }
 
     public boolean updateEstudiante(Estudiante est) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String queryString = "UPDATE " + ESTUDIANTE_TABLE + " SET " + ESTUDIANTE_NOMBRE + " = " + est.get_nombre() +
-                " , " + ESTUDIANTE_APELLIDO + " = " + est.get_apellido() + " , " + ESTUDIANTE_PASS + " = " + est.getPassword() + " , " + ESTUDIANTE_ANIO + " = " + est.get_anios()
-                + " WHERE " + ESTUDIANTE_ID + " = " + est.get_id();
+        String queryString = "UPDATE " + ESTUDIANTE_TABLE + " SET " + ESTUDIANTE_NOMBRE + " = '" + est.get_nombre() + "' , " + ESTUDIANTE_APELLIDO + " = '" + est.get_apellido() + "' , " + ESTUDIANTE_ANIO + " = '" + est.get_anios() + "' WHERE " + ESTUDIANTE_ID + " = " + est.get_id();
 
         Cursor cursor = db.rawQuery(queryString, null);
 

@@ -33,7 +33,7 @@ public class EstudianteAdapter
         this.carreraList = carreraList;
         this.listener = listener;
         //init filter
-        this.carreraListFiltered = carreraList;
+        this.carreraListFiltered = new ArrayList<>(carreraList);
     }
 
     @Override

@@ -45,8 +45,8 @@ public class ModelData implements Serializable {
         return this.databaseHelper.addEstudiante(est);
     }
 
-    public boolean deleteEstudiante(Estudiante est) {
-        return this.databaseHelper.deleteEstudiante(est);
+    public boolean deleteEstudiante(String cedula) {
+        return this.databaseHelper.deleteEstudiante(cedula);
     }
 
     public boolean updateEstudiante(Estudiante est) {

@@ -33,7 +33,7 @@ public class Login extends AppCompatActivity {
         userName = findViewById(R.id.usuario_fld);
         password = findViewById(R.id.pass_fld);
         model = new ModelData(Login.this);
-
+        //datosPrueba();
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,7 +56,7 @@ public class Login extends AppCompatActivity {
             }
         });
 
-        //datosPrueba();
+
 
        /* if (isAdmin(userName.getText().toString(), password.getText().toString())) {
             Toast.makeText(Login.this, "Bienvenido admin", Toast.LENGTH_LONG).show();
