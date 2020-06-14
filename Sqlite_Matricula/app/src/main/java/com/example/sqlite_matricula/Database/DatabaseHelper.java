@@ -284,7 +284,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 String idCurso = cursor.getString(0);
                 String cursoDescripcion = cursor.getString(1);
                 int cursoCreditos = cursor.getInt(2);
-                if(!compare(idCurso,list))
+                if (!compare(idCurso, list))
                     returnList.add(new Matricula(idCurso, cursoDescripcion, cursoCreditos));
             } while (cursor.moveToNext());
         }

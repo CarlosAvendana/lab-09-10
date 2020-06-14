@@ -14,13 +14,28 @@ import java.util.List;
 public class ModelData implements Serializable {
 
     public static String cedula;
+    private static String admin;
     DatabaseHelper databaseHelper;
-    private String admin;
+
 
     public ModelData(Context context) {
         this.databaseHelper = new DatabaseHelper(context);
-        admin = "";
+    }
 
+    public static String getCedula() {
+        return cedula;
+    }
+
+    public static void setCedula(String cedula) {
+        ModelData.cedula = cedula;
+    }
+
+    public static String getAdmin() {
+        return admin;
+    }
+
+    public static void setAdmin(String admin) {
+        ModelData.admin = admin;
     }
 
     //-----MATRICULAS
@@ -39,7 +54,6 @@ public class ModelData implements Serializable {
     public List<Matricula> getMatriculasNoEst(String estId) {
         return this.databaseHelper.getMatriculasNoEst(estId);
     }
-
 
     //-----ESTUDIANTES
     public boolean addEstudiante(Estudiante est) {
@@ -61,7 +75,6 @@ public class ModelData implements Serializable {
     public List<Estudiante> getEstudianteList() {
         return databaseHelper.getEstudiantes();
     }
-
 
     //----CURSOS
     public boolean addCurso(Curso c) {
@@ -86,21 +99,5 @@ public class ModelData implements Serializable {
 
     public void setDatabaseHelper(DatabaseHelper databaseHelper) {
         this.databaseHelper = databaseHelper;
-    }
-
-    public String getCedula() {
-        return cedula;
-    }
-
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
-    }
-
-    public String getAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(String admin) {
-        this.admin = admin;
     }
 }

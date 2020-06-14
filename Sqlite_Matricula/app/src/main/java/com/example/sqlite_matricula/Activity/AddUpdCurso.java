@@ -2,8 +2,10 @@ package com.example.sqlite_matricula.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -101,6 +103,24 @@ public class AddUpdCurso extends AppCompatActivity {
 
     public boolean validateForm() {
         int error = 0;
+
+        if (TextUtils.isEmpty(this.idFld.getText())) {
+            idFld.setError("Error requerido");
+            error++;
+        }
+        if (TextUtils.isEmpty(this.descripcionFld.getText())) {
+            descripcionFld.setError("Error requerido");
+            error++;
+        }
+        if (TextUtils.isEmpty(this.creditosFld.getText())) {
+            creditosFld.setError("Error requerido");
+            error++;
+        }
+        if (error > 0) {
+            Toast.makeText(getApplicationContext(), "Algunos errores", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
         return true;
     }
 

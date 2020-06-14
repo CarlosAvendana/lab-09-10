@@ -87,7 +87,7 @@ public class Registrar_Estudiante extends AppCompatActivity {
             recontraFld.setError("Error requerido");
             error++;
         }
-        if (!this.contraFld.getText().equals(this.recontraFld.getText())) {
+        if (this.contraFld.getText().equals(this.recontraFld.getText())) {
             contraFld.setError("Contraseña debe ser igual");
             recontraFld.setError("Contraseña debe ser igual");
             error++;

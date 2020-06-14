@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -45,8 +46,8 @@ public class MatriculaAdapter extends RecyclerView.Adapter<MatriculaAdapter.MyVi
         // basically a render
         final Matricula carrera = carreraListFiltered.get(position);
         holder.title1.setText(carrera.getIdCurso());
-        holder.title2.setText("" + carrera.getCreditos());
-        holder.description.setText(carrera.getDescripcionDelCurso());
+        holder.title2.setText(carrera.getDescripcionDelCurso());
+        holder.description.setText("Creditos: " + carrera.getCreditos());
     }
 
     @Override
@@ -124,7 +125,7 @@ public class MatriculaAdapter extends RecyclerView.Adapter<MatriculaAdapter.MyVi
                     List<Matricula> filteredList = new ArrayList<>();
                     for (Matricula row : carreraList) {
                         // filter use two parameters
-                        if (row.getIdEstudiante().toLowerCase().contains(charString.toLowerCase()) || row.getIdCurso().toLowerCase().contains(charString.toLowerCase())) {
+                        if (row.getIdCurso().toLowerCase().contains(charString.toLowerCase())) {
                             filteredList.add(row);
                         }
                     }
@@ -153,9 +154,12 @@ public class MatriculaAdapter extends RecyclerView.Adapter<MatriculaAdapter.MyVi
         public TextView title1, title2, description;
         //two layers
         public RelativeLayout viewForeground, viewBackgroundDelete, viewBackgroundEdit;
+        public ImageView icono;
 
         public MyViewHolder(View view) {
             super(view);
+            icono = view.findViewById(R.id.icono_);
+            icono.setImageResource(R.drawable.ic_maydemastricula);
             title1 = view.findViewById(R.id.titleFirstLbl);
             title2 = view.findViewById(R.id.titleSecLbl);
             description = view.findViewById(R.id.descriptionLbl);
