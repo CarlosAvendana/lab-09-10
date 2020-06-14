@@ -15,10 +15,12 @@ public class ModelData implements Serializable {
 
     DatabaseHelper databaseHelper;
     private String cedula;
+    private String admin;
 
     public ModelData(Context context) {
         this.databaseHelper = new DatabaseHelper(context);
         cedula = "";
+        admin = "";
 
     }
 
@@ -93,5 +95,13 @@ public class ModelData implements Serializable {
 
     public void setCedula(String cedula) {
         this.cedula = cedula;
+    }
+
+    public String getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(String admin) {
+        this.admin = admin;
     }
 }

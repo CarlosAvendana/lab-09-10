@@ -13,6 +13,11 @@ public class Matricula implements Serializable {
     public Matricula() {
     }
 
+    public Matricula(String idEstudiante, String idCurso) {
+        this.idEstudiante = idEstudiante;
+        this.idCurso = idCurso;
+    }
+
     public Matricula(String idCurso, String descripcionDelCurso, int creditos) {
         this.idCurso = idCurso;
         this.descripcionDelCurso = descripcionDelCurso;

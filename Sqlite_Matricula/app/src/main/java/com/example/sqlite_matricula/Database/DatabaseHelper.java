@@ -71,7 +71,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean deleteCurso(String c) {
 
         SQLiteDatabase db = this.getWritableDatabase();
-        String queryString = "DELETE FROM " + CURSO_TABLE + " WHERE " + CURSO_ID + " = '" + c +"'";
+        String queryString = "DELETE FROM " + CURSO_TABLE + " WHERE " + CURSO_ID + " = '" + c + "'";
 
         Cursor cursor = db.rawQuery(queryString, null);
 
@@ -89,7 +89,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean updateCurso(Curso c) {
         SQLiteDatabase db = this.getWritableDatabase();
         String queryString = "UPDATE " + CURSO_TABLE + " SET " + CURSO_DESCRIPCION + " = '" + c.getDescripcion() +
-                "' , " + CURSO_CREDITOS + " = '" + c.getCreditos() + "' WHERE " + CURSO_ID + " = '" + c.getId() +"'";
+                "' , " + CURSO_CREDITOS + " = '" + c.getCreditos() + "' WHERE " + CURSO_ID + " = '" + c.getId() + "'";
 
         Cursor cursor = db.rawQuery(queryString, null);
 
@@ -228,8 +228,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public boolean deleteMatricula(Matricula mat) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String queryString = "DELETE FROM " + MATRICULA_TABLE + " WHERE " + ESTUDIANTE_ID + " = " + mat.getIdEstudiante()
-                + " AND " + CURSO_ID + " = " + mat.getIdCurso();
+        String queryString = "DELETE FROM " + MATRICULA_TABLE + " WHERE " + ESTUDIANTE_ID + " = '" + mat.getIdEstudiante()
+                + "' AND " + CURSO_ID + " = '" + mat.getIdCurso() + "'";
         Cursor cursor = db.rawQuery(queryString, null);
 
         if (cursor.moveToFirst()) {
@@ -250,7 +250,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<Matricula> returnList = new ArrayList<>();
 
         String queryString = "SELECT MATRICULA_TABLE.CURSO_ID, CURSO_TABLE.CURSO_DESCRIPCION, CURSO_TABLE.CURSO_CREDITOS FROM " + MATRICULA_TABLE +
-                " INNER JOIN " + CURSO_TABLE + " ON MATRICULA_TABLE.ESTUDIANTE_ID = " + estId + " AND MATRICULA_TABLE.CURSO_ID = CURSO_TABLE.CURSO_ID";
+                " INNER JOIN " + CURSO_TABLE + " ON MATRICULA_TABLE.ESTUDIANTE_ID = '" + estId + "' AND MATRICULA_TABLE.CURSO_ID = CURSO_TABLE.CURSO_ID";
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.rawQuery(queryString, null);
@@ -274,7 +274,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<Matricula> returnList = new ArrayList<>();
 
         String queryString = "SELECT MATRICULA_TABLE.CURSO_ID, CURSO_TABLE.CURSO_DESCRIPCION, CURSO_TABLE.CURSO_CREDITOS FROM " + MATRICULA_TABLE +
-                " INNER JOIN " + CURSO_TABLE + " ON MATRICULA_TABLE.ESTUDIANTE_ID != " + estId + " AND MATRICULA_TABLE.CURSO_ID = CURSO_TABLE.CURSO_ID";
+                " INNER JOIN " + CURSO_TABLE + " ON MATRICULA_TABLE.ESTUDIANTE_ID != '" + estId + "' AND MATRICULA_TABLE.CURSO_ID = CURSO_TABLE.CURSO_ID";
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.rawQuery(queryString, null);

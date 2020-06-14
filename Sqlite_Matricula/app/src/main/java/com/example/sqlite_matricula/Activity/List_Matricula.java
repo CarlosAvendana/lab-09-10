@@ -3,10 +3,14 @@ package com.example.sqlite_matricula.Activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -35,6 +39,7 @@ public class List_Matricula extends AppCompatActivity
     private SearchView searchView;
     private ModelData model;
     private EditText campoTextoIdMatricular;
+    private ImageView bntEnviar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +55,13 @@ public class List_Matricula extends AppCompatActivity
         mRecyclerView = findViewById(R.id.recycler_matriculaFld);
         estudianteList = new ArrayList<>();
 
-        // model = ModelData.getInstance();
-        //estudianteList = model.getMatriculaList();
+        bntEnviar = findViewById(R.id.botonMatricular);
 
+        //
+        model = new ModelData(List_Matricula.this);
+        estudianteList = model.getMatriculasEst(model.getCedula());
         mAdapter = new MatriculaAdapter(estudianteList, this);
+        //
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -64,8 +72,13 @@ public class List_Matricula extends AppCompatActivity
         ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerItemTouchHelper(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, this);
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(mRecyclerView);
 
-
         mAdapter.notifyDataSetChanged();
+        bntEnviar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                matricular();
+            }
+        });
 
     }
 
@@ -119,6 +132,14 @@ public class List_Matricula extends AppCompatActivity
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void matricular() {
+        if (!TextUtils.isEmpty(campoTextoIdMatricular.getText())) {
+            model.addMatricula(new Matricula(model.getCedula(), campoTextoIdMatricular.getText().toString()));
+        } else {
+            Toast.makeText(this, "Seleccione un curso", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

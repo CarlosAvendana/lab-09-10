@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.sqlite_matricula.DatosPrueba.ModelData;
 import com.example.sqlite_matricula.Model.Curso;
 import com.example.sqlite_matricula.Model.Estudiante;
+import com.example.sqlite_matricula.Model.Matricula;
 import com.example.sqlite_matricula.R;
 
 public class Login extends AppCompatActivity {
@@ -33,7 +34,9 @@ public class Login extends AppCompatActivity {
         userName = findViewById(R.id.usuario_fld);
         password = findViewById(R.id.pass_fld);
         model = new ModelData(Login.this);
-        //datosPrueba();
+
+        datosPrueba();
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,12 +48,13 @@ public class Login extends AppCompatActivity {
                         if (isEstudiante(userName.getText().toString(), password.getText().toString())) {
                             Toast.makeText(Login.this, "Bienvenido estudiante", Toast.LENGTH_LONG).show();
                             sent_To_NavDrawer_Activity();
+                        } else {
+                            Toast.makeText(Login.this, "No se encuentra registrado", Toast.LENGTH_LONG).show();
                         }
-                        Toast.makeText(Login.this, "No se encuentra registrado", Toast.LENGTH_LONG).show();
 
                     }
                 } else {
-                    Toast.makeText(Login.this, "INGRESE DATOS POR FAVOR", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Login.this, "Ingrese datos por favor", Toast.LENGTH_LONG).show();
                 }
                 //sent_To_NavDrawer_Activity();
             }
@@ -78,8 +82,11 @@ public class Login extends AppCompatActivity {
     }
 
     public void datosPrueba() {
-        model.addEstudiante(new Estudiante("117280151", "Felipe", "Piedra", "123456", 21));
-        model.addEstudiante(new Estudiante("402370159", "Carlos", "Obando", "123456", 22));
+        //model.addEstudiante(new Estudiante("117280151", "Felipe", "Piedra", "123456", 21));
+        model.addEstudiante(new Estudiante("117080857", "Gustavo", "Sanchez", "123456", 22));
+        model.addEstudiante(new Estudiante("116340204", "Juan", "Madrigal", "123456", 24));
+        model.addEstudiante(new Estudiante("117090732", "Paola", "Zuniga", "123456", 22));
+        //model.addEstudiante(new Estudiante("402370159", "Carlos", "Obando", "123456", 22));
 
         Curso n = new Curso("EIF400", "Paradigmas", 2);
         Curso nn = new Curso("EIF401", "Bases", 3);
@@ -87,6 +94,20 @@ public class Login extends AppCompatActivity {
         model.addCurso(n);
         model.addCurso(nn);
         model.addCurso(nnn);
+
+        Matricula matricula1 = new Matricula("117280151","EIF400");
+        Matricula matricula2 = new Matricula("117280151","EIF401");
+        Matricula matricula3 = new Matricula("117280151","EIF402");
+
+        Matricula matricula4 = new Matricula("117080857","EIF400");
+        Matricula matricula5 = new Matricula("116340204","EIF400");
+        Matricula matricula6 = new Matricula("117090732","EIF400");
+        model.addMatricula(matricula1);
+        model.addMatricula(matricula2);
+        model.addMatricula(matricula3);
+        model.addMatricula(matricula4);
+        model.addMatricula(matricula5);
+        model.addMatricula(matricula6);
 
     }
 
@@ -100,7 +121,7 @@ public class Login extends AppCompatActivity {
     public boolean isAdmin(String nombre, String pass) {
         boolean bandera = false;
         if (nombre.equals("admin") && pass.equals("admin")) {
-            model.setCedula("admin");
+            model.setAdmin("admin");
             bandera = true;
         }
         return bandera;

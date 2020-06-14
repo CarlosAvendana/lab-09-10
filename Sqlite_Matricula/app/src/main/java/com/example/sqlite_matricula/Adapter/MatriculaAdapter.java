@@ -29,7 +29,7 @@ public class MatriculaAdapter extends RecyclerView.Adapter<MatriculaAdapter.MyVi
         this.carreraList = carreraList;
         this.listener = listener;
         //init filter
-        this.carreraListFiltered = carreraList;
+        this.carreraListFiltered = new ArrayList<>(carreraList);
     }
 
     @Override
