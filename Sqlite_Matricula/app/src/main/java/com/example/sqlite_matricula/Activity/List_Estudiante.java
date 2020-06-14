@@ -87,19 +87,21 @@ public class List_Estudiante extends AppCompatActivity
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, int position) {
         if (direction == ItemTouchHelper.START) {
             if (viewHolder instanceof EstudianteAdapter.MyViewHolder) {
-                // get the removed item name to display it in snack bar
                 String name = estudianteList.get(viewHolder.getAdapterPosition()).get_nombre();
-
-                // save the index deleted
                 final int deletedIndex = viewHolder.getAdapterPosition();
-                // remove the item from recyclerView
                 mAdapter.removeItem(viewHolder.getAdapterPosition());
+                //Eliminar todas las matriculas
+                //Eliminar el estudiante
+                Estudiante eliminarEst = mAdapter.getSwipedItem(viewHolder.getAdapterPosition());
+                model.deleteEstudiante(eliminarEst);
+
                 Toast.makeText(getApplicationContext(), name + " removido!", Toast.LENGTH_LONG).show();
             }
         } else {
             //If is editing a row object
             Estudiante aux = mAdapter.getSwipedItem(viewHolder.getAdapterPosition());
             //send data to Edit Activity
+
             Intent intent = new Intent(this, AddUpdEstudiante.class);
             intent.putExtra("editable", true);
             intent.putExtra("Estudiante", aux);
