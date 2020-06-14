@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -41,6 +42,18 @@ public class Login extends AppCompatActivity {
 
         datosPrueba();
 
+        if (isAdmin(userName.getText().toString(), password.getText().toString())) {
+            Toast.makeText(Login.this, "Bienvenido admin", Toast.LENGTH_LONG).show();
+            sent_To_NavDrawer_Activity();
+        } else {
+            if (isEstudiante(userName.getText().toString(), password.getText().toString())){
+                Toast.makeText(Login.this, "Bienvenido estudiante", Toast.LENGTH_LONG).show();
+                sent_To_NavDrawer_Activity();
+            }
+            Toast.makeText(Login.this, "No se encuentra registrado", Toast.LENGTH_LONG).show();
+
+        }
+
         //primero valida si es el admin
         //sino es que valide que el estudiante esta en la base datos
         //sino esta en la bd que no lo deje pasar
@@ -67,15 +80,21 @@ public class Login extends AppCompatActivity {
         this.finish();
     }
 
-    public void validaRol(String nombre, String pass) {
+    public boolean isAdmin(String nombre, String pass) {
+        boolean bandera = false;
         if (nombre.equals("admin") && pass.equals("admin")) {
             model.setCedula("admin");
+            bandera = true;
         }
+        return bandera;
     }
 
     public boolean isEstudiante(String cedula, String pass) {
         boolean bandera = false;
-        model.setCedula(cedula);
+        if (model.existeEstudiante(cedula, pass)) {
+            model.setCedula(cedula);
+            bandera = true;
+        }
         return bandera;
     }
 
