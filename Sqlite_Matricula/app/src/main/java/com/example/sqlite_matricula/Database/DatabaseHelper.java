@@ -272,9 +272,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public List<Matricula> getMatriculasNoEst(String estId) {
         List<Matricula> returnList = new ArrayList<>();
+        List<Matricula> list = this.getMatriculasEst(estId);
 
-        String queryString = "SELECT MATRICULA_TABLE.CURSO_ID, CURSO_TABLE.CURSO_DESCRIPCION, CURSO_TABLE.CURSO_CREDITOS FROM " + MATRICULA_TABLE +
-                " INNER JOIN " + CURSO_TABLE + " ON MATRICULA_TABLE.ESTUDIANTE_ID != '" + estId + "' AND MATRICULA_TABLE.CURSO_ID = CURSO_TABLE.CURSO_ID";
+        String queryString = "SELECT * FROM " + CURSO_TABLE;
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.rawQuery(queryString, null);
@@ -284,14 +284,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 String idCurso = cursor.getString(0);
                 String cursoDescripcion = cursor.getString(1);
                 int cursoCreditos = cursor.getInt(2);
-
-                returnList.add(new Matricula(idCurso, cursoDescripcion, cursoCreditos));
+                if(!compare(idCurso,list))
+                    returnList.add(new Matricula(idCurso, cursoDescripcion, cursoCreditos));
             } while (cursor.moveToNext());
         }
         cursor.close();
         db.close();
 
         return returnList;
+    }
+
+    boolean compare(String idCurso, List<Matricula> l1) {
+        for (Matricula mat : l1)
+            if (mat.getIdCurso().equals(idCurso))
+                return true;
+        return false;
     }
 
 
