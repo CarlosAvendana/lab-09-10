@@ -155,12 +155,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         String queryString = "DELETE FROM " + ESTUDIANTE_TABLE + " WHERE " + ESTUDIANTE_ID + " = " + est.get_id();
         Cursor cursor = db.rawQuery(queryString, null);
-
-        if (cursor.moveToFirst()) {
-            return true;
-        } else {
-            return false;
-        }
+        return cursor.moveToFirst();
     }
 
     public boolean updateEstudiante(Estudiante est) {
@@ -180,6 +175,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.close();
             return false;
         }
+    }
+
+    public boolean existeEstudiante(String user,String password){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String queryString = "SELECT * FROM " + ESTUDIANTE_TABLE + " WHERE " + ESTUDIANTE_ID + " = " + user +
+                " AND "+ ESTUDIANTE_PASS + " = "+ password;
+        Cursor cursor = db.rawQuery(queryString, null);
+        return cursor.moveToFirst();
+
     }
 
     public List<Estudiante> getEstudiantes() {
