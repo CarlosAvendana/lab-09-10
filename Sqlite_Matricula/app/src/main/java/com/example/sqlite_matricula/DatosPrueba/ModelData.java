@@ -14,12 +14,11 @@ import java.util.List;
 public class ModelData implements Serializable {
 
     DatabaseHelper databaseHelper;
-    private String cedula;
+    public static String cedula;
     private String admin;
 
     public ModelData(Context context) {
         this.databaseHelper = new DatabaseHelper(context);
-        cedula = "";
         admin = "";
 
     }

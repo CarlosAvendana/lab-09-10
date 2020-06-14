@@ -59,7 +59,7 @@ public class List_Matricula extends AppCompatActivity
 
         //
         model = new ModelData(List_Matricula.this);
-        estudianteList = model.getMatriculasEst(model.getCedula());
+        estudianteList = model.getMatriculasEst(ModelData.cedula);
         mAdapter = new MatriculaAdapter(estudianteList, this);
         //
 
