@@ -42,4 +42,6 @@
     <string name="title_activity_list__desmatricula">List_Desmatricula</string>
     <string name="Cedula">Cedula</string>
     <string name="password">Contraseña</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="recontrasena">Verifique contraseña</string>
 </resources>

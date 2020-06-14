@@ -24,6 +24,7 @@ public class Login extends AppCompatActivity {
     EditText password;
     ImageView icono;
     ModelData model;
+    ImageButton btnAgregar;
 
 
     @Override
@@ -33,10 +34,17 @@ public class Login extends AppCompatActivity {
         loginButton = findViewById(R.id.enviar_btn);
         userName = findViewById(R.id.usuario_fld);
         password = findViewById(R.id.pass_fld);
+        btnAgregar = findViewById(R.id.btnAgregarLogin);
+
         model = new ModelData(Login.this);
 
         // datosPrueba();
-
+        btnAgregar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sent_AgregarEstudiante();
+            }
+        });
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -135,6 +143,11 @@ public class Login extends AppCompatActivity {
             bandera = true;
         }
         return bandera;
+    }
+
+    public void sent_AgregarEstudiante() {
+        Intent i = new Intent(Login.this, Registrar_Estudiante.class);
+        startActivity(i);
     }
 
 }
