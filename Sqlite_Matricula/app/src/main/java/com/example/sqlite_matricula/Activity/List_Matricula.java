@@ -137,9 +137,16 @@ public class List_Matricula extends AppCompatActivity
     public void matricular() {
         if (!TextUtils.isEmpty(campoTextoIdMatricular.getText())) {
             model.addMatricula(new Matricula(model.getCedula(), campoTextoIdMatricular.getText().toString()));
+            model = new ModelData(List_Matricula.this);
+            estudianteList = model.getMatriculasNoEst(ModelData.cedula);
+            mAdapter = new MatriculaAdapter(estudianteList, this);
+            mRecyclerView.setAdapter(mAdapter);
+
         } else {
             Toast.makeText(this, "Seleccione un curso", Toast.LENGTH_SHORT).show();
         }
     }
+
+
 
 }

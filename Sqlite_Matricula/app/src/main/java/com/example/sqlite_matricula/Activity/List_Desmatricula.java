@@ -136,7 +136,11 @@ public class List_Desmatricula extends AppCompatActivity
 
     public void desmatricular() {
         if (!TextUtils.isEmpty(campoTextoIdDesmatricular.getText())) {
-            model.addMatricula(new Matricula(model.getCedula(), campoTextoIdDesmatricular.getText().toString()));
+            model.deleteMatricula(new Matricula(model.getCedula(), campoTextoIdDesmatricular.getText().toString()));
+            model = new ModelData(List_Desmatricula.this);
+            estudianteList = model.getMatriculasEst(ModelData.cedula);
+            mAdapter = new MatriculaAdapter(estudianteList, this);
+            mRecyclerView.setAdapter(mAdapter);
         } else {
             Toast.makeText(this, "Seleccione un curso", Toast.LENGTH_SHORT).show();
         }
