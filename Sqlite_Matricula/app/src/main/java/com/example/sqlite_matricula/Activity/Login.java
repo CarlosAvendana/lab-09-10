@@ -38,7 +38,7 @@ public class Login extends AppCompatActivity {
 
         model = new ModelData(Login.this);
 
-        datosPrueba();
+        //datosPrueba();
         btnAgregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -43,7 +43,9 @@ public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
     public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
         int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
         int swipeFlags = ItemTouchHelper.START | ItemTouchHelper.END;
-        return makeMovementFlags(dragFlags, swipeFlags);
+        if (this.listener.getClass().getSimpleName().equals("List_Matricula") || this.listener.getClass().getSimpleName().equals("List_Desmatricula"))
+                swipeFlags=0;
+            return makeMovementFlags(dragFlags, swipeFlags);
     }
 
     @Override
