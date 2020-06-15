@@ -80,6 +80,7 @@ public class List_Estudiante extends AppCompatActivity
                 String name = estudianteList.get(viewHolder.getAdapterPosition()).get_nombre();
                 final int deletedIndex = viewHolder.getAdapterPosition();
                 String cedula = estudianteList.get(viewHolder.getAdapterPosition()).get_id();
+
                 model.deleteEstudiante(cedula);
                 mAdapter.removeItem(viewHolder.getAdapterPosition());
                 //Eliminar todas las matriculas

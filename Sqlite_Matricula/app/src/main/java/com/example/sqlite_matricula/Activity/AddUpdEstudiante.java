@@ -2,8 +2,10 @@ package com.example.sqlite_matricula.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,6 +23,7 @@ public class AddUpdEstudiante extends AppCompatActivity {
     private EditText apellidoFld;
     private EditText aniosFld;
     private ModelData model;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,8 +108,28 @@ public class AddUpdEstudiante extends AppCompatActivity {
 
     public boolean validateForm() {
         int error = 0;
+
+        if (TextUtils.isEmpty(this.idFld.getText())) {
+            idFld.setError("Error requerido");
+            error++;
+        }
+        if (TextUtils.isEmpty(this.nombreFld.getText())) {
+            nombreFld.setError("Error requerido");
+            error++;
+        }
+        if (TextUtils.isEmpty(this.apellidoFld.getText())) {
+            apellidoFld.setError("Error requerido");
+            error++;
+        }
+        if (TextUtils.isEmpty(this.aniosFld.getText())) {
+            aniosFld.setError("Error requerido");
+            error++;
+        }
+        if (error > 0) {
+            Toast.makeText(getApplicationContext(), "Algunos errores", Toast.LENGTH_LONG).show();
+            return false;
+        }
         return true;
     }
-
 
 }// Cierre de la clase AddUpdEstudiante

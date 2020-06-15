@@ -141,12 +141,11 @@ public class List_Matricula extends AppCompatActivity
             estudianteList = model.getMatriculasNoEst(ModelData.cedula);
             mAdapter = new MatriculaAdapter(estudianteList, this);
             mRecyclerView.setAdapter(mAdapter);
-
+            Toast.makeText(this, "Curso matriculado", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "Seleccione un curso", Toast.LENGTH_SHORT).show();
         }
     }
-
 
 
 }

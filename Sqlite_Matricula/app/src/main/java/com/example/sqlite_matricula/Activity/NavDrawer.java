@@ -1,6 +1,7 @@
 package com.example.sqlite_matricula.Activity;
 
 import android.content.Intent;
+import android.graphics.ColorSpace;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,6 +17,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.sqlite_matricula.DatosPrueba.ModelData;
 import com.example.sqlite_matricula.R;
 import com.google.android.material.navigation.NavigationView;
 
@@ -30,18 +32,50 @@ public class NavDrawer extends AppCompatActivity implements NavigationView.OnNav
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        if(ModelData.getAdmin().equals("")){
+            NavigationView navigationView = findViewById(R.id.nav_view);
+            Menu menuNav=navigationView.getMenu();
+            MenuItem curso = menuNav.findItem(R.id.nav_cursos);
+            MenuItem student = menuNav.findItem(R.id.nav_student);
+            curso.setVisible(false);
+            student.setVisible(false);
 
-        mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home)
-                .setDrawerLayout(drawer)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);
-        navigationView.setNavigationItemSelectedListener(this);
-        drawer.openDrawer(GravityCompat.START);
+            DrawerLayout drawer = findViewById(R.id.drawer_layout);
+            //NavigationView navigationView = findViewById(R.id.nav_view);
+
+            mAppBarConfiguration = new AppBarConfiguration.Builder(
+                    R.id.nav_home)
+                    .setDrawerLayout(drawer)
+                    .build();
+            NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+            NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+            NavigationUI.setupWithNavController(navigationView, navController);
+            navigationView.setNavigationItemSelectedListener(this);
+            drawer.openDrawer(GravityCompat.START);
+        }
+        if(ModelData.getAdmin().equals("admin")){
+            NavigationView navigationView = findViewById(R.id.nav_view);
+            Menu menuNav=navigationView.getMenu();
+            MenuItem MATRICULAR = menuNav.findItem(R.id.nav_matricula);
+            MenuItem DESMATRICULAR = menuNav.findItem(R.id.nav_desmatricular);
+            MATRICULAR.setVisible(false);
+            DESMATRICULAR.setVisible(false);
+
+            DrawerLayout drawer = findViewById(R.id.drawer_layout);
+            //NavigationView navigationView = findViewById(R.id.nav_view);
+
+            mAppBarConfiguration = new AppBarConfiguration.Builder(
+                    R.id.nav_home)
+                    .setDrawerLayout(drawer)
+                    .build();
+            NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+            NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+            NavigationUI.setupWithNavController(navigationView, navController);
+            navigationView.setNavigationItemSelectedListener(this);
+            drawer.openDrawer(GravityCompat.START);
+        }
+
+
     }
 
     @Override

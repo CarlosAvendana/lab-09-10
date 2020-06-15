@@ -64,5 +64,16 @@
             android:layout_marginRight="150dp"
             android:backgroundTint="@color/primary_light"
             app:srcCompat="@android:drawable/ic_menu_send" />
+
+        <ImageButton
+            android:id="@+id/btnAgregarLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="150dp"
+            android:backgroundTint="@color/primary_light"
+            app:srcCompat="@drawable/ic_add_user" />
+
     </LinearLayout>
 </ScrollView>

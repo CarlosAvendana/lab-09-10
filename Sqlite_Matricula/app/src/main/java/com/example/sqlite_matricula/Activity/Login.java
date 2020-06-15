@@ -24,6 +24,7 @@ public class Login extends AppCompatActivity {
     EditText password;
     ImageView icono;
     ModelData model;
+    ImageButton btnAgregar;
 
 
     @Override
@@ -33,10 +34,17 @@ public class Login extends AppCompatActivity {
         loginButton = findViewById(R.id.enviar_btn);
         userName = findViewById(R.id.usuario_fld);
         password = findViewById(R.id.pass_fld);
+        btnAgregar = findViewById(R.id.btnAgregarLogin);
+
         model = new ModelData(Login.this);
 
-        // datosPrueba();
-
+        datosPrueba();
+        btnAgregar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sent_AgregarEstudiante();
+            }
+        });
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,40 +68,31 @@ public class Login extends AppCompatActivity {
             }
         });
 
-
-
-       /* if (isAdmin(userName.getText().toString(), password.getText().toString())) {
-            Toast.makeText(Login.this, "Bienvenido admin", Toast.LENGTH_LONG).show();
-            sent_To_NavDrawer_Activity();
-        } else {
-            if (isEstudiante(userName.getText().toString(), password.getText().toString())){
-                Toast.makeText(Login.this, "Bienvenido estudiante", Toast.LENGTH_LONG).show();
-                sent_To_NavDrawer_Activity();
-            }
-            Toast.makeText(Login.this, "No se encuentra registrado", Toast.LENGTH_LONG).show();
-
-        }*/
-
-        //primero valida si es el admin
-        //sino es que valide que el estudiante esta en la base datos
-        //sino esta en la bd que no lo deje pasar
-
-
     }
 
     public void datosPrueba() {
-        //model.addEstudiante(new Estudiante("117280151", "Felipe", "Piedra", "123456", 21));
+        model.addEstudiante(new Estudiante("117280151", "Felipe", "Piedra", "123456", 21));
         model.addEstudiante(new Estudiante("117080857", "Gustavo", "Sanchez", "123456", 22));
         model.addEstudiante(new Estudiante("116340204", "Juan", "Madrigal", "123456", 24));
         model.addEstudiante(new Estudiante("117090732", "Paola", "Zuniga", "123456", 22));
-        //model.addEstudiante(new Estudiante("402370159", "Carlos", "Obando", "123456", 22));
+        model.addEstudiante(new Estudiante("402370159", "Carlos", "Obando", "123456", 22));
+
+        //Administrador
+        model.addEstudiante(new Estudiante("117090732", "Paola", "Zuniga", "123456", 22));
+
 
         Curso n = new Curso("EIF400", "Paradigmas", 2);
         Curso nn = new Curso("EIF401", "Bases", 3);
         Curso nnn = new Curso("EIF402", "Moviles", 4);
+        Curso nuevo = new Curso("AOA102", "Expresion del movimiento", 4);
+        Curso nuevo1 = new Curso("MCA302", "Baile folklorico", 4);
+        Curso nuevo2 = new Curso("ECG021", "Derechos Humanos", 4);
         model.addCurso(n);
         model.addCurso(nn);
         model.addCurso(nnn);
+        model.addCurso(nuevo);
+        model.addCurso(nuevo1);
+        model.addCurso(nuevo2);
 
         Matricula matricula1 = new Matricula("117280151", "EIF400");
         Matricula matricula2 = new Matricula("117280151", "EIF401");
@@ -101,7 +100,8 @@ public class Login extends AppCompatActivity {
 
         Matricula matricula4 = new Matricula("117080857", "EIF400");
         Matricula matricula5 = new Matricula("116340204", "EIF400");
-        Matricula matricula6 = new Matricula("117090732", "EIF400");
+        Matricula matricula6 = new Matricula("402370159", "EIF400");
+        Matricula matricula7 = new Matricula("402370159", "ECG021");
 
         model.addMatricula(matricula1);
         model.addMatricula(matricula2);
@@ -109,6 +109,7 @@ public class Login extends AppCompatActivity {
         model.addMatricula(matricula4);
         model.addMatricula(matricula5);
         model.addMatricula(matricula6);
+        model.addMatricula(matricula7);
 
     }
 
@@ -122,7 +123,8 @@ public class Login extends AppCompatActivity {
     public boolean isAdmin(String nombre, String pass) {
         boolean bandera = false;
         if (nombre.equals("admin") && pass.equals("admin")) {
-            model.setAdmin("admin");
+            ModelData.setAdmin("admin");
+            ModelData.setCedula("402370159");
             bandera = true;
         }
         return bandera;
@@ -131,10 +133,16 @@ public class Login extends AppCompatActivity {
     public boolean isEstudiante(String cedula, String pass) {
         boolean bandera = false;
         if (model.existeEstudiante(cedula, pass)) {
-            model.setCedula(cedula);
+            ModelData.setCedula(cedula);
+            ModelData.setAdmin("");
             bandera = true;
         }
         return bandera;
+    }
+
+    public void sent_AgregarEstudiante() {
+        Intent i = new Intent(Login.this, Registrar_Estudiante.class);
+        startActivity(i);
     }
 
 }

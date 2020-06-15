@@ -141,6 +141,7 @@ public class List_Desmatricula extends AppCompatActivity
             estudianteList = model.getMatriculasEst(ModelData.cedula);
             mAdapter = new MatriculaAdapter(estudianteList, this);
             mRecyclerView.setAdapter(mAdapter);
+            Toast.makeText(this, "Curso desmatriculado", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "Seleccione un curso", Toast.LENGTH_SHORT).show();
         }
