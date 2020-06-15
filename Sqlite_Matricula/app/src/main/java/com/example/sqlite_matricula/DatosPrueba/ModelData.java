@@ -61,6 +61,7 @@ public class ModelData implements Serializable {
     }
 
     public boolean deleteEstudiante(String cedula) {
+        this.databaseHelper.deleteEstudiante(cedula);
         return this.databaseHelper.deleteEstudiante(cedula);
     }
 
@@ -82,6 +83,7 @@ public class ModelData implements Serializable {
     }
 
     public boolean deleteCurso(String c) {
+        this.databaseHelper.deleteMatricula(c);
         return this.databaseHelper.deleteCurso(c);
     }
 

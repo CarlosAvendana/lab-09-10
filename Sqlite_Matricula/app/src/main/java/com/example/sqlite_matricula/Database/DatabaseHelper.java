@@ -243,6 +243,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public boolean deleteMatricula(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String queryString = "DELETE FROM " + MATRICULA_TABLE + " WHERE " + ESTUDIANTE_ID + " = '" + id
+                + "' OR " + CURSO_ID + " = '" + id + "'";
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToFirst()) {
+            cursor.close();
+            db.close();
+            return true;
+        } else {
+            cursor.close();
+            db.close();
+            return false;
+        }
+    }
+
 
     //---------METODOS APARTE
 
