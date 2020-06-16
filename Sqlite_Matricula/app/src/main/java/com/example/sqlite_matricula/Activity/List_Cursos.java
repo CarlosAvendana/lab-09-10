@@ -89,12 +89,16 @@ public class List_Cursos extends AppCompatActivity
             if (viewHolder instanceof CursoAdapter.MyViewHolder) {
                 String name = cursoList.get(viewHolder.getAdapterPosition()).getId();
                 final int deletedIndex = viewHolder.getAdapterPosition();
-                model.deleteCurso(name);
-                mAdapter.removeItem(viewHolder.getAdapterPosition());
-                //Eliminar todas las matriculas con este curso
-                //Eliminar el curso
+                if(!model.verificaMatricula(name)) {
+                    model.deleteCurso(name);
+                    mAdapter.removeItem(viewHolder.getAdapterPosition());
+                    Toast.makeText(getApplicationContext(), name + " removido!", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "ERROR, CURSO CON ESTUDIANTES NO SE PUEDE REMOVER", Toast.LENGTH_LONG).show();
+                }
 
-                Toast.makeText(getApplicationContext(), name + " removido!", Toast.LENGTH_LONG).show();
+
             }
         } else {
             Curso aux = mAdapter.getSwipedItem(viewHolder.getAdapterPosition());

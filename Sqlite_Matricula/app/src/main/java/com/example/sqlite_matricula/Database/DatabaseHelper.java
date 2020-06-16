@@ -243,6 +243,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public boolean verificaMatricula(String idCurso){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String queryString = "SELECT * FROM " + MATRICULA_TABLE + " WHERE " + CURSO_ID + " = '" + idCurso + "'";
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToFirst()) {
+            cursor.close();
+            db.close();
+            return true;
+        } else {
+            cursor.close();
+            db.close();
+            return false;
+        }
+    }
+
     public boolean deleteMatricula(String id){
         SQLiteDatabase db = this.getWritableDatabase();
         String queryString = "DELETE FROM " + MATRICULA_TABLE + " WHERE " + ESTUDIANTE_ID + " = '" + id

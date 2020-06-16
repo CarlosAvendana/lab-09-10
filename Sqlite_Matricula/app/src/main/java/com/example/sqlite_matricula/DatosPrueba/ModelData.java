@@ -83,8 +83,12 @@ public class ModelData implements Serializable {
     }
 
     public boolean deleteCurso(String c) {
-        this.databaseHelper.deleteMatricula(c);
+        //this.databaseHelper.deleteMatricula(c);
         return this.databaseHelper.deleteCurso(c);
+    }
+
+    public boolean verificaMatricula(String id){
+        return this.databaseHelper.verificaMatricula(id);
     }
 
     public boolean updateCurso(Curso c) {
