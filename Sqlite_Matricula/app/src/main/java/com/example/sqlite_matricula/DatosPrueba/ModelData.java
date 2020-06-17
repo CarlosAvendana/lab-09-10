@@ -73,6 +73,10 @@ public class ModelData implements Serializable {
         return this.databaseHelper.existeEstudiante(user, password);
     }
 
+    public boolean validaEstudiante(String user){
+        return this.databaseHelper.validaEstudiante(user);
+    }
+
     public List<Estudiante> getEstudianteList() {
         return databaseHelper.getEstudiantes();
     }
@@ -85,6 +89,10 @@ public class ModelData implements Serializable {
     public boolean deleteCurso(String c) {
         //this.databaseHelper.deleteMatricula(c);
         return this.databaseHelper.deleteCurso(c);
+    }
+
+    public boolean existeCurso(String c){
+        return this.databaseHelper.existeCurso(c);
     }
 
     public boolean verificaMatricula(String id){

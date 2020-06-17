@@ -75,7 +75,7 @@ public class AddUpdCurso extends AppCompatActivity {
     }
 
     public void addCurso() {
-        if (validateForm()) {
+        if (validateForm() && !this.model.existeCurso(idFld.getText().toString())) {
             Curso est = new Curso(idFld.getText().toString(),
                     descripcionFld.getText().toString(),
                     Integer.parseInt(creditosFld.getText().toString()));
@@ -85,6 +85,8 @@ public class AddUpdCurso extends AppCompatActivity {
             intent.putExtra("addCurso", est);
             startActivity(intent);
             finish();
+        }else{
+            Toast.makeText(getApplicationContext(), "ERROR, ID de curso repetido", Toast.LENGTH_LONG).show();
         }
     }
 

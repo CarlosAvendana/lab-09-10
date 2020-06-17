@@ -51,12 +51,14 @@ public class Registrar_Estudiante extends AppCompatActivity {
     }
 
     public void addEstudiante() {
-        if (validateForm()) {
+        if (validateForm() && !model.validaEstudiante(idFld.getText().toString())) {
             Estudiante est = new Estudiante(idFld.getText().toString(), nombreFld.getText().toString(), apellidoFld.getText().toString(), contraFld.getText().toString(), Integer.parseInt(aniosFld.getText().toString()));
             model.addEstudiante(est);
             Intent intent = new Intent(getBaseContext(), Login.class);
             startActivity(intent);
             finish();
+        }else{
+            Toast.makeText(getApplicationContext(), "Error, no se puede repetir ID", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -76,7 +78,7 @@ public class Registrar_Estudiante extends AppCompatActivity {
             error++;
         }
         if (TextUtils.isEmpty(this.aniosFld.getText())) {
-            contraFld.setError("Error requerido");
+            aniosFld.setError("Error requerido");
             error++;
         }
         if (TextUtils.isEmpty(this.contraFld.getText())) {
